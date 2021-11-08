@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "886086108101",
+    "project_id": "petfinder-b8300",
+    "storage_bucket": "petfinder-b8300.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886086108101:android:28a6e5c30e63e6114841ac",
+        "android_client_info": {
+          "package_name": "com.team.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886086108101-1eo1b9o4q1nrtgp8p1vsd7ep1o3b9a29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFsSc-IYOl5tz1H6i7xAlcqna9Pa-uJ1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886086108101-1eo1b9o4q1nrtgp8p1vsd7ep1o3b9a29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
