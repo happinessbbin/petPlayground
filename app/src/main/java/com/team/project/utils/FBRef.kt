@@ -32,10 +32,6 @@ class FBRef {
         /** 데이터베이스 Users의 인스턴스(파베에 있는 json 데이터에서 users 부분) **/
         val userInfoRef = database.getReference("users")
 
-        /** 펫 정보 code **/
-        val codeInfoRef = database.getReference("code")
-
-
     }
 
 }

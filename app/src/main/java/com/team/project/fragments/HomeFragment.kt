@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
 //        }
 
         binding.storeTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
+            it.findNavController().navigate(R.id.action_homeFragment_to_myInfoFragment)
         }
 
         rvAdapter = BookmarkRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)

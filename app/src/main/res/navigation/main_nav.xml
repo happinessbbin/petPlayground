@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_homeFragment_to_tipFragment"
             app:destination="@id/tipFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myInfoFragment2"
+            app:destination="@id/myInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookmarkFragment"
@@ -96,4 +102,41 @@
             android:id="@+id/action_talkFragment_to_tipFragment"
             app:destination="@id/tipFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myInfoFragment"
+        android:name="com.team.project.fragments.MyInfoFragment"
+        android:label="MyInfoFragment" >
+        <action
+            android:id="@+id/action_myInfoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_myInfoChangePwFragment"
+            app:destination="@id/myInfoChangePwFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_myInfoDeleteFragment"
+            app:destination="@id/myInfoDeleteFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/myInfoChangePwFragment"
+        android:name="com.team.project.MyInfoChangePwFragment"
+        android:label="MyInfoChangePwFragment" >
+        <action
+            android:id="@+id/action_myInfoChangePwFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myInfoDeleteFragment"
+        android:name="com.team.project.MyInfoDeleteFragment"
+        android:label="MyInfoDeleteFragment" >
+        <action
+            android:id="@+id/action_myInfoDeleteFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.team.project.auth.LoginActivity"
+        android:label="LoginActivity" />
 </navigation>

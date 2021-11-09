@@ -1,5 +1,6 @@
 package com.team.project.board
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.team.project.firebaseuser.UserModel
 import java.lang.Exception
 
 class BoardInsideActivity : AppCompatActivity() {
@@ -30,7 +32,7 @@ class BoardInsideActivity : AppCompatActivity() {
     private val TAG = BoardInsideActivity::class.java.simpleName
 
     private lateinit var binding : ActivityBoardInsideBinding
-
+    lateinit var uid :String
     private lateinit var key:String
 
     private val commentDataList = mutableListOf<CommentModel>()
@@ -38,7 +40,6 @@ class BoardInsideActivity : AppCompatActivity() {
     private lateinit var commentAdapter : CommentLVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
@@ -207,9 +208,34 @@ class BoardInsideActivity : AppCompatActivity() {
             }
         }
         FBRef.boardRef.child(key).addValueEventListener(postListener)
-
-
-
     }
 
+    /***
+     * @Service: selectUserInfo(uid : String) -  (해당) User 조회
+     * @Param1 : String (uid)
+     * @Description : 사용자의 uid로 Firebase users객체에 있는 해당 uid 사용자의 정보를 찾음
+     ***/
+//    private fun selectUser(uid :String) {
+//        Log.d(ContentValues.TAG, "SERVICE - selectUser")
+//
+//        val postListener = object : ValueEventListener {
+//
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//
+//                // Firebase에 담긴 User를 UserModel 객체로 가져옴.
+//                val userModel = dataSnapshot.getValue(UserModel::class.java)
+//
+//                binding.myName.setText(userModel?.userName)
+//
+//
+//            }
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+//            }
+//        }
+//
+//        // 파이어베이스에 users객체의 해당 uid에 해당 이벤트를 전달
+//        FBRef.userInfoRef.addValueEventListener(postListener)
+//    }
 }
