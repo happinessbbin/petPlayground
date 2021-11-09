@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
+import android.graphics.Color
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
+import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
@@ -55,6 +59,10 @@ class LoginActivity : AppCompatActivity() {
         //엔터키 안먹히게
         binding.inputId.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> if (keyCode == KeyEvent.KEYCODE_ENTER) true else false })
         binding.inputPw.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> if (keyCode == KeyEvent.KEYCODE_ENTER) true else false })
+
+        /*** 아이디,패스워드 입력 시 ui변경 ***/
+        onClick(binding.inputId)
+//        onClick(binding.inputPw)
 
         /*** 이메일으로 가입 화면 넘기기 ***/
         binding.btnJoin.setOnClickListener(View.OnClickListener {
@@ -216,6 +224,36 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+
+    /**
+     * onClick - 로그인 클릭 안먹히게
+     */
+    fun onClick(inputText: EditText){
+        //문자입력해야만 버튼이 활성화됨
+        inputText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+
+            override fun afterTextChanged(editable: Editable) {
+                setColorAndAble(editable.length > 5)
+            }
+        })
+    }
+
+    /**
+     * setColorAndAble - 색상 변경 및 버튼 안먹히게
+     */
+    fun setColorAndAble(flag : Boolean){
+        if(flag){
+            binding.btnLogin.setBackgroundColor(Color.rgb(255,223,109))
+            binding.btnLogin.setClickable(true)
+        }else{
+            binding.btnLogin.setClickable(false)
+            binding.btnLogin.setBackgroundColor(Color.rgb(153,153,153))
+        }
+
     }
 }
 
