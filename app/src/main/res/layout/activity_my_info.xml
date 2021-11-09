@@ -16,10 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- tool bar -->
-            <include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar_sky" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -28,7 +24,7 @@
                 android:fontFamily="@font/jalnanotf"
                 android:gravity="center_horizontal"
                 android:text="내정보"
-                android:textColor="@color/white"
+                android:textColor="@color/down_black"
                 android:textSize="20dp" />
 
         </RelativeLayout>
