@@ -22,9 +22,10 @@ class SettingActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-//        val logoutBtn = findViewById<Button>(R.id.logoutBtn)
-        val logoutBtn : Button = findViewById(R.id.logoutBtn)
-        logoutBtn.setOnClickListener {
+
+        // 로그아웃
+        val btnLogout : Button = findViewById(R.id.btnLogout)
+        btnLogout.setOnClickListener {
 
             auth.signOut()
 
@@ -35,6 +36,5 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-
     }
 }
