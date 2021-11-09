@@ -1,3 +1,4 @@
+/*
 package com.team.project.auth
 
 import android.content.Intent
@@ -83,12 +84,5 @@ class JoinActivity : AppCompatActivity() {
 
 
         }
-
-
-
-
-
-
-
     }
-}
+}*/

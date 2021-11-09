@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import com.team.project.R
-import com.team.project.auth.IntroActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.team.project.auth.LoginActivity
 
 class SettingActivity : AppCompatActivity() {
 
@@ -30,7 +30,7 @@ class SettingActivity : AppCompatActivity() {
 
             Toast.makeText(this, "로그아웃", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this, IntroActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
 

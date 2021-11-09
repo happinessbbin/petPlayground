@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import com.team.project.auth.IntroActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.team.project.auth.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
             Log.d("SplashActivity", "null")
 
             Handler().postDelayed({
-                startActivity(Intent(this, IntroActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }, 3000)
 
