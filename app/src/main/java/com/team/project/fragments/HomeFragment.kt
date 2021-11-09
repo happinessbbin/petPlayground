@@ -59,9 +59,9 @@ class HomeFragment : Fragment() {
 
         }
 
-        binding.bookmarkTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
-        }
+//        binding.bookmarkTap.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+//        }
 
         binding.storeTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
