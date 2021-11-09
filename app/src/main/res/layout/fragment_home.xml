@@ -19,34 +19,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:background="@color/white">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/my_intro_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
 
                     <ImageView
                         android:id="@+id/category1"
-                        android:src="@drawable/main_icon_all"
+                        android:src="@drawable/titlebutton"
                         android:layout_weight="1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"/>
 
-                    <ImageView
-                        android:id="@+id/category2"
-                        android:src="@drawable/main_icon_cook"
-                        android:layout_weight="1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
 
                     <ImageView
-                        android:src="@drawable/main_icon_economy"
-                        android:layout_weight="1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"/>
-
-                    <ImageView
-                        android:src="@drawable/main_icon_else"
+                        android:src="@drawable/titlebutton2"
                         android:layout_weight="1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"/>
@@ -55,102 +67,19 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="200dp"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
+                    <ImageView
+                        android:src="@drawable/webview"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp">
 
-                    <ImageView
-                        android:src="@drawable/main_icon_hobby"
-                        android:layout_weight="1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"/>
-
-                    <ImageView
-
-                        android:src="@drawable/main_icon_interior"
-                        android:layout_weight="1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"/>
-
-                    <ImageView
-                        android:src="@drawable/main_icon_life"
-                        android:layout_weight="1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"/>
-
-                    <ImageView
-                        android:src="@drawable/main_icon_oneroom"
-                        android:layout_weight="1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:text="category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -190,38 +119,38 @@
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="3dp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/linearLayout">-->
 
-            <LinearLayout
-                android:background="@color/mainColor"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
+<!--            <LinearLayout-->
+<!--                android:background="@color/mainColor"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_height="match_parent"/>-->
 
 <!--            <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_weight="1"-->
 <!--                android:layout_height="match_parent"/>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_height="match_parent"/>-->
 
-        </LinearLayout>
+<!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="match_parent"/>&ndash;&gt;-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_height="match_parent"/>-->
+
+<!--        </LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/linearLayout"
