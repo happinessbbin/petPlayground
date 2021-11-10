@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+<!-- fragment_tip에서 새로 액티비티 만드는거-->
         <activity android:name=".CalendarTodolist" android:exported="false"></activity>
         <!-- android:hardwareAccelerated="false" -->
         <activity android:name=".setting.SettingActivity" />

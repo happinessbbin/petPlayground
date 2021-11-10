@@ -6,7 +6,7 @@
     tools:context=".CalendarTodolist"
     android:orientation="vertical"
     android:gravity="center">
-
+<!-- fragment_tip에서 인텐트로 새로 만든 액티비티페이지-->
     <DatePicker
         android:datePickerMode="spinner"
         android:id="@+id/datePicker1"

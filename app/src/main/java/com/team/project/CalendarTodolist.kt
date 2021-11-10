@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-
+//이 페이지는 fragment_tip 페이지에서 글작성버튼 누르면 액티비티 새로 생성하는 페이지
 class CalendarTodolist : AppCompatActivity() {
     lateinit var myRef : DatabaseReference
     lateinit var dp : DatePicker
