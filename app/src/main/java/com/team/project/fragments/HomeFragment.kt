@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.ImageView
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +32,10 @@ import com.project.petfinder.banner.MyIntroPagerRecyclerAdapter
 import com.project.petfinder.banner.PageItem
 import com.team.project.MainActivity
 import com.team.project.utils.FBAuth
+import kotlinx.android.synthetic.main.activity_content_show.view.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_home.view.webView1
+import kotlinx.android.synthetic.main.webview.view.*
 import kotlin.collections.ArrayList
 
 
@@ -88,10 +95,11 @@ class HomeFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        var view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        // 웹뷰
+        clickWebView(binding.root)
 
         // banner
-        banner(view)
+        banner(binding.root)
 
         binding.tipTap.setOnClickListener {
             Log.d("HomeFragment", "tipTap")
@@ -104,69 +112,34 @@ class HomeFragment : Fragment() {
 
         }
 
-//        binding.bookmarkTap.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
-//        }
-
         binding.storeTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_myInfoFragment)
         }
 
-        rvAdapter = BookmarkRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)
-
-        val rv : RecyclerView = binding.mainRV
-        rv.adapter = rvAdapter
-
-        rv.layoutManager = GridLayoutManager(requireContext(), 2)
-
-        getCategoryData()
 
         return binding.root
     }
 
-    private fun getCategoryData(){
+    private fun clickWebView(view: View){
+        // 웹뷰 1
+        val bundle = Bundle()
 
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+        setUrl(binding.webView1,"https://blog.naver.com/seomee1203/222223002871",bundle)
+        setUrl(binding.category1,"https://blog.naver.com/seomee1203/222223002871",bundle)
+        setUrl(binding.category2,"https://blog.naver.com/seomee1203/222223002871",bundle)
 
-                for (dataModel in dataSnapshot.children) {
+    }
 
-                    val item = dataModel.getValue(ContentModel::class.java)
-
-                    items.add(item!!)
-                    itemKeyList.add(dataModel.key.toString())
-
-
-                }
-                rvAdapter.notifyDataSetChanged()
-
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.w("ContentListActivity", "loadPost:onCancelled", databaseError.toException())
-            }
+    fun setUrl(button:ImageView, url:String,bundle:Bundle){
+        button.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putString("url", url)
+            it.findNavController().navigate(R.id.action_homeFragment_to_webViewFragment, bundle)
         }
-        FBRef.category1.addValueEventListener(postListener)
-        FBRef.category2.addValueEventListener(postListener)
-
     }
 
     // 배너
     fun banner(view:View){
-
-
-        // Pre Button
-//        previous_btn.setOnClickListener {
-//            Log.d(ContentValues.TAG, "MainActivity - 이전 버튼 클릭")
-//
-//            my_intro_view_pager.currentItem = my_intro_view_pager.currentItem - 1
-//        }
-//        // Next Button
-//        next_btn.setOnClickListener {
-//            Log.d(ContentValues.TAG, "MainActivity - 다음 버튼 클릭")
-//            my_intro_view_pager.currentItem = my_intro_view_pager.currentItem + 1
-//        }
 
         // 배너 사진 설정
         pageItemList.add(PageItem(R.drawable.ban1))
