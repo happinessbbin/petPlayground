@@ -1,6 +1,5 @@
 package com.team.project.fragments
 
-import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -11,31 +10,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import android.widget.ImageView
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.team.project.R
 import com.team.project.contentsList.BookmarkRVAdapter
 import com.team.project.contentsList.ContentModel
 import com.team.project.databinding.FragmentHomeBinding
-import com.team.project.utils.FBRef
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.project.petfinder.banner.MyIntroPagerRecyclerAdapter
 import com.project.petfinder.banner.PageItem
 import com.team.project.MainActivity
 import com.team.project.utils.FBAuth
-import kotlinx.android.synthetic.main.activity_content_show.view.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlinx.android.synthetic.main.fragment_home.view.webView1
-import kotlinx.android.synthetic.main.webview.view.*
 import kotlin.collections.ArrayList
 
 
@@ -70,9 +56,7 @@ class HomeFragment : Fragment() {
     lateinit var my_intro_view_pager:ViewPager2
     lateinit var dots_indicator:com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
-
     var i=0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,7 +100,6 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_myInfoFragment)
         }
 
-
         return binding.root
     }
 
@@ -124,7 +107,13 @@ class HomeFragment : Fragment() {
         // 웹뷰 1
         val bundle = Bundle()
 
-        setUrl(binding.webView1,"https://blog.naver.com/seomee1203/222223002871",bundle)
+        setUrl(binding.webView0,"https://www.ban-life.com/content/list?t=01",bundle)
+        setUrl(binding.webView1,"https://www.ban-life.com/content/view?id=5175",bundle)
+        setUrl(binding.webView2,"https://www.ban-life.com/content/view?id=5156",bundle)
+        setUrl(binding.webView3,"https://www.ban-life.com/content/view?id=5150",bundle)
+        setUrl(binding.webView4,"https://www.ban-life.com/content/view?id=5165",bundle)
+
+
         setUrl(binding.category1,"https://m.holapet.com/place/pensions/region",bundle)
         setUrl(binding.category2,"https://m.holapet.com/place/category/4",bundle)
         setUrl(binding.category3,"https://m.holapet.com/place/category/11",bundle)
@@ -157,13 +146,12 @@ class HomeFragment : Fragment() {
         pageItemList.add(PageItem(R.drawable.ban7))
         pageItemList.add(PageItem(R.drawable.ban8))
 
-
         bannerRecyclerAdapter = MyIntroPagerRecyclerAdapter(pageItemList)
 
         binding.myIntroViewPager.apply {
             adapter = bannerRecyclerAdapter
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                //이 banner드의 state 값으로 뷰페이저의 상태를 알 수 있음
+                //이 banner의 state 값으로 뷰페이저의 상태를 알 수 있음
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
                     when (state) {
@@ -175,7 +163,6 @@ class HomeFragment : Fragment() {
                 }
             })
         }
-
     }
 
     //배너 자동 스크롤 컨트롤하는 클래스
@@ -206,7 +193,6 @@ class HomeFragment : Fragment() {
     private fun autoScrollStop(){
         homeBannerHandler.removeMessages(0) //핸들러 중지
     }
-
 
     //다른 화면으로 갔다가 돌아오면 배너 스크롤 다시 시작
     override fun onResume() {

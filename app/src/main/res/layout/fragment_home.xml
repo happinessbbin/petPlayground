@@ -103,51 +103,58 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:orientation="vertical">
-
                     <ImageView
-                        android:id="@+id/webView1"
-                        android:src="@drawable/webview"
+                        android:id="@+id/webView0"
+                        android:src="@drawable/goodplcae"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="50dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:id="@+id/webView1"
+                            android:src="@drawable/hotplacemain"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:id="@+id/webView2"
+                            android:src="@drawable/hotplace1"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                        <ImageView
+                            android:id="@+id/webView3"
+                            android:src="@drawable/hotplace2"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                        <ImageView
+                            android:id="@+id/webView4"
+                            android:src="@drawable/hotplace3"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"/>
 
                 </LinearLayout>
-
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="20dp"-->
-<!--                    android:background="@drawable/background_radius"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:text="board1"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_margin="10dp"-->
-<!--                        android:layout_height="wrap_content"/>-->
-
-<!--                    <TextView-->
-<!--                        android:text="board1"-->
-<!--                        android:layout_margin="10dp"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"/>-->
-
-<!--                    <TextView-->
-<!--                        android:text="board1"-->
-<!--                        android:layout_margin="10dp"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"/>-->
-
-<!--                </LinearLayout>-->
-
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/mainRV"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="600dp" />-->
 
 
             </LinearLayout>
