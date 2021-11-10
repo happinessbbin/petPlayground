@@ -66,7 +66,7 @@ class MyInfoChangePwFragment : Fragment() {
 
             builder.setTitle("비밀번호 변경")
             builder.setMessage("수정 하시겠습니까?")
-            builder.setIcon(R.mipmap.ic_launcher)
+            builder.setIcon(R.drawable.petfoot_yellow)
 
             builder.setPositiveButton("예") { dialog, id ->
                 modifyPasswordUser(FBAuth.getUid() , mainActivity.email)

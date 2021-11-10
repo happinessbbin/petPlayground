@@ -64,7 +64,7 @@ class MyInfoDeleteFragment : Fragment() {
 
                     builder.setTitle("탈퇴하기")
                     builder.setMessage("정말 탈퇴 하시겠습니까?")
-                    builder.setIcon(R.mipmap.ic_launcher)
+                    builder.setIcon(R.drawable.petfoot_yellow)
 
                     builder.setPositiveButton("예") { dialog, id ->
                         deleteUser(FBAuth.getUid())
