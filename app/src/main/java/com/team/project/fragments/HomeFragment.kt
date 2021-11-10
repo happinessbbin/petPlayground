@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
     // 인덱스값이 아이템 수의 절반, 딱 중간쯤에서 시작하도록 해 앞뒤 어디로 이동해도 무한대처럼 보이게 함
     private var bannerPosition = Int.MAX_VALUE/4
     // 1.5 초 간격으로 배너 페이지 넘어감
-    private val intervalTime = 3500.toLong()
+    private val intervalTime = 5000.toLong()
 
     // 배너 어댑터 초기화
     private lateinit var bannerRecyclerAdapter: MyIntroPagerRecyclerAdapter
@@ -127,7 +127,6 @@ class HomeFragment : Fragment() {
 
     fun setUrl(button:ImageView, url:String,bundle:Bundle){
         button.setOnClickListener{
-            val bundle = Bundle()
             bundle.putString("url", url)
             it.findNavController().navigate(R.id.action_homeFragment_to_webViewFragment, bundle)
         }
@@ -137,16 +136,18 @@ class HomeFragment : Fragment() {
     fun banner(view:View){
 
         // 배너 사진 설정
-        pageItemList.add(PageItem(R.drawable.ban1))
-        pageItemList.add(PageItem(R.drawable.ban2))
-        pageItemList.add(PageItem(R.drawable.ban3))
-        pageItemList.add(PageItem(R.drawable.ban4))
-        pageItemList.add(PageItem(R.drawable.ban5))
-        pageItemList.add(PageItem(R.drawable.ban6))
-        pageItemList.add(PageItem(R.drawable.ban7))
-        pageItemList.add(PageItem(R.drawable.ban8))
+        pageItemList.add(PageItem(R.drawable.ban1,"https://www.ban-life.com/shop/products/9?utm_source=naver&utm_medium=organic&utm_campaign=2111_hanriver_yacht"))
+        pageItemList.add(PageItem(R.drawable.ban2,"https://www.ban-life.com/shop/products/8?utm_source=naver&utm_medium=organic&utm_campaign=2110_cpferry"))
+
+        pageItemList.add(PageItem(R.drawable.ban3,"https://www.ban-life.com/shop/products/7?utm_source=naver&utm_medium=organic&utm_campaign=2110_sl_hotel"))
+        pageItemList.add(PageItem(R.drawable.ban4,"https://www.ban-life.com/content/view?id=4936"))
+        pageItemList.add(PageItem(R.drawable.ban5,"https://www.ban-life.com/content/view?id=4945"))
+        pageItemList.add(PageItem(R.drawable.ban6,"https://www.ban-life.com/content/view?id=5031"))
+        pageItemList.add(PageItem(R.drawable.ban7,"https://www.ban-life.com/content/view?id=4526"))
+        pageItemList.add(PageItem(R.drawable.ban8,"https://www.ban-life.com/shop/products/5"))
 
         bannerRecyclerAdapter = MyIntroPagerRecyclerAdapter(pageItemList)
+
 
         binding.myIntroViewPager.apply {
             adapter = bannerRecyclerAdapter

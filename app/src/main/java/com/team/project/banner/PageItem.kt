@@ -1,4 +1,4 @@
 package com.project.petfinder.banner
 
-class PageItem(val imageSrc: Int) {
+class PageItem(val imageSrc: Int, val url:String) {
 }
