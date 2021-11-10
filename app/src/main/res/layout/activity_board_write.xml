@@ -87,7 +87,7 @@
                     android:id="@+id/writeBtn"
                     android:text="등록"
                     android:layout_width="match_parent"
-                    android:background="@drawable/background_radius_yellow"
+                    android:background="@color/orange_june"
                     android:fontFamily="@font/jalnanotf"
                     android:textSize="20dp"
                     android:layout_marginTop="50dp"
