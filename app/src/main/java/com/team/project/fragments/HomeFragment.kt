@@ -125,8 +125,14 @@ class HomeFragment : Fragment() {
         val bundle = Bundle()
 
         setUrl(binding.webView1,"https://blog.naver.com/seomee1203/222223002871",bundle)
-        setUrl(binding.category1,"https://blog.naver.com/seomee1203/222223002871",bundle)
-        setUrl(binding.category2,"https://blog.naver.com/seomee1203/222223002871",bundle)
+        setUrl(binding.category1,"https://m.holapet.com/place/pensions/region",bundle)
+        setUrl(binding.category2,"https://m.holapet.com/place/category/4",bundle)
+        setUrl(binding.category3,"https://m.holapet.com/place/category/11",bundle)
+        setUrl(binding.category4,"https://m.holapet.com/place/category/2",bundle)
+        setUrl(binding.category5,"https://m.holapet.com/place/category/3",bundle)
+        setUrl(binding.category6,"https://m.holapet.com/place/category/14",bundle)
+        setUrl(binding.category7,"https://m.holapet.com/place/category/6",bundle)
+        setUrl(binding.category8,"https://m.holapet.com/place/category/5",bundle)
 
     }
 
