@@ -1,5 +1,6 @@
 package com.team.project.board
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.team.project.firebaseuser.UserModel
 
 class BoardEditActivity : AppCompatActivity() {
 
@@ -92,10 +94,6 @@ class BoardEditActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val dataModel = dataSnapshot.getValue(BoardModel::class.java)
-//                Log.d(TAG, dataModel.toString())
-//                Log.d(TAG, dataModel!!.title)
-//                Log.d(TAG, dataModel!!.time)
-
                 binding.titleArea.setText(dataModel?.title)
                 binding.contentArea.setText(dataModel?.content)
                 writerUid = dataModel!!.uid
@@ -111,12 +109,7 @@ class BoardEditActivity : AppCompatActivity() {
 
         FBRef.boardRef.child(key).addValueEventListener(postListener)
 
-
     }
-
-
-
-
 
 
 }

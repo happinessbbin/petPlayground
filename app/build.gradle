@@ -85,6 +85,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-
+    implementation 'de.hdodenhof:circleimageview:3.1.0' //원형 이미지 XML 컴퍼넌트
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+' //이미지 자르기 라이브러리
+    implementation 'com.squareup.picasso:picasso:2.71828' //이미지 다운로드 및 캐싱 라이브러리
 
 }

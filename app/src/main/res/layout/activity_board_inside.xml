@@ -59,37 +59,64 @@
 
                 </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/myProfile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:text="name" />
+
                 <TextView
                     android:id="@+id/timeArea"
                     android:text="time"
-                    android:layout_width="match_parent"
-                    android:gravity="right"
-                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="200dp"
+
                     android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/getImageArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType = "fitXY"/>
 
                 <TextView
                     android:id="@+id/textArea"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="20dp"
+                    android:layout_height="100dp"
                     android:textColor="@color/black"
-                    android:text="여기는 내용 영역"
-                    android:background="@drawable/background_radius"
-                    android:padding="10dp"/>
+                    android:text="여기는 내용 영역" />
 
-
-                <ImageView
-                    android:id="@+id/getImageArea"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
 
                 <ListView
                     android:id="@+id/commentLV"
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
-                    />
+                    android:layout_height="600dp" />
+
+
+
+            </LinearLayout>
 
             </LinearLayout>
 

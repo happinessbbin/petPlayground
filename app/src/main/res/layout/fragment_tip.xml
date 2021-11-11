@@ -157,7 +157,7 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:background="@color/white"
             android:weightSum="4"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -167,28 +167,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/bottom_home" />
+                android:src="@drawable/homebe" />
 
             <ImageView
                 android:id="@+id/tipTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/bottom_calendar" />
+                android:src="@drawable/cal" />
 
             <ImageView
                 android:id="@+id/talkTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/bottom_chat" />
+                android:src="@drawable/whishbe" />
 
             <ImageView
                 android:id="@+id/storeTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/bottom_user" />
+                android:src="@drawable/mypagebe" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

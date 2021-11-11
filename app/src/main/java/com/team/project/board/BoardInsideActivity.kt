@@ -1,6 +1,7 @@
 package com.team.project.board
 
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,12 +20,14 @@ import com.team.project.utils.FBAuth
 import com.team.project.utils.FBRef
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.team.project.firebaseuser.UserModel
+import kotlinx.coroutines.*
 import java.lang.Exception
 
 class BoardInsideActivity : AppCompatActivity() {
@@ -39,10 +42,14 @@ class BoardInsideActivity : AppCompatActivity() {
 
     private lateinit var commentAdapter : CommentLVAdapter
 
+    private lateinit var userUid:String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
+
+
 
         binding.boardSettingIcon.setOnClickListener {
             showDialog()
@@ -50,15 +57,27 @@ class BoardInsideActivity : AppCompatActivity() {
 
         // 두번째 방법
         key = intent.getStringExtra("key").toString()
-        getBoardData(key)
-        getImageData(key)
 
+            CoroutineScope(Dispatchers.Main).launch {
+                val job1 = CoroutineScope(Dispatchers.Default).async {
+                    getBoardData(key)
+                }.await()
+
+                val job2 = CoroutineScope(Dispatchers.Default).async {
+                    delay(100)
+                    selectWriter(userUid,this@BoardInsideActivity)
+                }.await()
+
+                getImageData(key)
+                getCommentData(key)
+
+            }
 
         binding.commentBtn.setOnClickListener {
             insertComment(key)
         }
 
-        getCommentData(key)
+
 
         commentAdapter = CommentLVAdapter(commentDataList)
         binding.commentLV.adapter = commentAdapter
@@ -172,9 +191,9 @@ class BoardInsideActivity : AppCompatActivity() {
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-
                 try {
 
+                    Log.d(TAG,"shit:" + dataSnapshot.getValue())
                     val dataModel = dataSnapshot.getValue(BoardModel::class.java)
                     Log.d(TAG, dataModel!!.title)
 
@@ -182,8 +201,12 @@ class BoardInsideActivity : AppCompatActivity() {
                     binding.textArea.text = dataModel!!.content
                     binding.timeArea.text = dataModel!!.time
 
+                    // 게시판 글쓴 사용자
+                    userUid = dataModel.uid
+
                     val myUid = FBAuth.getUid()
                     val writerUid = dataModel.uid
+
 
                     if(myUid.equals(writerUid)){
                         Log.d(TAG, "내가 쓴 글")
@@ -198,8 +221,6 @@ class BoardInsideActivity : AppCompatActivity() {
 
                 }
 
-
-
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -207,6 +228,7 @@ class BoardInsideActivity : AppCompatActivity() {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
             }
         }
+
         FBRef.boardRef.child(key).addValueEventListener(postListener)
     }
 
@@ -215,27 +237,33 @@ class BoardInsideActivity : AppCompatActivity() {
      * @Param1 : String (uid)
      * @Description : 사용자의 uid로 Firebase users객체에 있는 해당 uid 사용자의 정보를 찾음
      ***/
-//    private fun selectUser(uid :String) {
-//        Log.d(ContentValues.TAG, "SERVICE - selectUser")
-//
-//        val postListener = object : ValueEventListener {
-//
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//
-//                // Firebase에 담긴 User를 UserModel 객체로 가져옴.
-//                val userModel = dataSnapshot.getValue(UserModel::class.java)
-//
-//                binding.myName.setText(userModel?.userName)
-//
-//
-//            }
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
-//            }
-//        }
-//
-//        // 파이어베이스에 users객체의 해당 uid에 해당 이벤트를 전달
-//        FBRef.userInfoRef.addValueEventListener(postListener)
-//    }
+   fun selectWriter(uid :String,context: Context) {
+        Log.d(ContentValues.TAG, "SERVICE - selectUser")
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // Firebase에 담긴 User를 UserModel 객체로 가져옴.
+                val userModel = dataSnapshot.getValue(UserModel::class.java)
+                binding.name.setText(userModel?.userName)
+
+                // User Porfile 값이 "EMPTY" 가 아닐때만 프로필 셋팅
+                if (!userModel?.profileImageUrl.equals("EMPTY")) {
+                    Glide.with(context)
+                        .load(userModel?.profileImageUrl)
+                        .into(binding.myProfile)
+                }
+
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+
+        // 파이어베이스에 users객체의 해당 uid에 해당 이벤트를 전달
+        FBRef.userInfoRef.child(userUid).addValueEventListener(postListener)
+    }
+
 }

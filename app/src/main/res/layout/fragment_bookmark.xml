@@ -57,7 +57,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="45dp"
                 android:background="@color/white"
                 android:weightSum="5"
                 app:layout_constraintBottom_toBottomOf="parent">
@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/bottom_hometap" />
+                    android:src="@drawable/homebe" />
 
                 <ImageView
                     android:id="@+id/tipTap"

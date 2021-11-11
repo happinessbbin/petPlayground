@@ -219,11 +219,37 @@
 
     </LinearLayout>
 </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/mainColor"/>
+
+        </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:background="@color/white"
         android:weightSum="5"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -233,28 +259,28 @@
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/bottom_home" />
+            android:src="@drawable/homebe" />
 
         <ImageView
             android:id="@+id/tipTap"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/bottom_calendar" />
+            android:src="@drawable/cal" />
 
         <ImageView
             android:id="@+id/talkTap"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/bottom_chat" />
+            android:src="@drawable/whishbe" />
 
         <ImageView
             android:id="@+id/storeTap"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/bottom_user" />
+            android:src="@drawable/mypage" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

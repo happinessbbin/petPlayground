@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.auth.ktx.auth
 import com.team.project.R
 import com.team.project.databinding.ActivityBoardWriteBinding
 import com.team.project.utils.FBAuth
