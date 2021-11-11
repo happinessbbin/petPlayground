@@ -84,10 +84,10 @@ class TipFragment : Fragment() {
             it.findNavController().navigate(R.id.action_tipFragment_to_talkFragment)
         }
 
-
         binding.storeTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_tipFragment_to_storeFragment)
+            it.findNavController().navigate(R.id.action_tipFragment_to_myInfoFragment)
         }
+
 
         binding.btnCalendarWrite.setOnClickListener{
             val intent = Intent(context, CalendarTodolist::class.java)

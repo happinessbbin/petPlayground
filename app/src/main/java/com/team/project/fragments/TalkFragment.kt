@@ -83,8 +83,9 @@ class TalkFragment : Fragment() {
         }
 
         binding.storeTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_talkFragment_to_storeFragment)
+            it.findNavController().navigate(R.id.action_talkFragment_to_myInfoFragment)
         }
+
 
         getFBBoardData()
 

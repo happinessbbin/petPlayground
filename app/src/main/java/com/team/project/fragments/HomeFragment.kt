@@ -86,7 +86,6 @@ class HomeFragment : Fragment() {
         banner(binding.root)
 
         binding.tipTap.setOnClickListener {
-            Log.d("HomeFragment", "tipTap")
             it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment)
         }
 

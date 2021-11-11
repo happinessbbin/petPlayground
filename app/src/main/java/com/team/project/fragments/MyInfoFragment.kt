@@ -75,6 +75,21 @@ class MyInfoFragment : Fragment() {
 
         /******** 버튼 클릭 이벤트 ********/
 
+
+        // 메인바
+        binding.homeTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_myInfoFragment_to_homeFragment)
+        }
+
+        binding.tipTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_myInfoFragment_to_tipFragment)
+        }
+
+        binding.talkTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_myInfoFragment_to_talkFragment)
+        }
+
+        
         // 비밀번호 변경 버튼
         binding.btnPwchange.setOnClickListener(View.OnClickListener {
             it.findNavController().navigate(R.id.action_myInfoFragment_to_myInfoChangePwFragment)
