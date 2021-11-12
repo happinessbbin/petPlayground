@@ -9,13 +9,13 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.google.firebase.auth.ktx.auth
 import com.team.project.R
 import com.team.project.databinding.ActivityBoardWriteBinding
 import com.team.project.utils.FBAuth
 import com.team.project.utils.FBRef
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.*
 import java.io.ByteArrayOutputStream
 
 class BoardWriteActivity : AppCompatActivity() {
@@ -33,6 +33,8 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding.writeBtn.setOnClickListener {
 
+            CoroutineScope(Dispatchers.Main).launch {
+
             val title = binding.titleArea.text.toString()
             val content = binding.contentArea.text.toString()
             val uid = FBAuth.getUid()
@@ -48,19 +50,16 @@ class BoardWriteActivity : AppCompatActivity() {
 
             val key = FBRef.boardRef.push().key.toString()
 
-            FBRef.boardRef
-                .child(key)
-                .setValue(BoardModel(title, content, uid, time))
+//                imageUpload(key)
 
-            Toast.makeText(this, "게시글 입력 완료", Toast.LENGTH_LONG).show()
+                FBRef.boardRef
+                    .child(key)
+                    .setValue(BoardModel(title, content, uid, time,imageUpload(key)))
+                Toast.makeText(this@BoardWriteActivity, "게시글 입력 완료", Toast.LENGTH_LONG).show()
 
-            if(isImageUpload == true) {
-                imageUpload(key)
+                finish()
+
             }
-
-            finish()
-
-
         }
 
         binding.imageArea.setOnClickListener {
@@ -71,9 +70,9 @@ class BoardWriteActivity : AppCompatActivity() {
 
     }
 
-    private fun imageUpload(key : String){
+    suspend fun imageUpload(key : String) : String{
         // Get the data from an ImageView as bytes
-
+        Log.d(TAG,"imageUpload111111111:")
         val storage = Firebase.storage
         val storageRef = storage.reference
         val mountainsRef = storageRef.child(key + ".png")
@@ -87,12 +86,32 @@ class BoardWriteActivity : AppCompatActivity() {
         val data = baos.toByteArray()
 
         var uploadTask = mountainsRef.putBytes(data)
+
+        var url = "EMPTY"
+
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
+            Log.e("firebase", "Error getting data", it)
         }.addOnSuccessListener { taskSnapshot ->
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
             // ...
+
+            val storageReference = Firebase.storage.reference.child(key + ".png")
+            Log.i("firebase", "Got value111 ${taskSnapshot.uploadSessionUri}")
+
+            Log.i("firebase", "Got value222 ${storage.getReferenceFromUrl(taskSnapshot.uploadSessionUri.toString())}")
+            url = taskSnapshot.uploadSessionUri.toString()
+
+            Log.d(TAG,"22222.33333333333:"+url)
         }
+
+        delay(1500L)
+
+
+        Log.d(TAG,"???:"+uploadTask)
+        Log.d(TAG,"???:"+mountainsRef.root)
+
+        return url
 
     }
 

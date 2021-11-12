@@ -101,6 +101,11 @@
                     android:layout_height="300dp"
                     android:scaleType = "fitXY"/>
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.3dp"
+                    android:background="#4682B4" />
+
                 <TextView
                     android:id="@+id/textArea"
                     android:layout_width="match_parent"
@@ -108,12 +113,15 @@
                     android:textColor="@color/black"
                     android:text="여기는 내용 영역" />
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.3dp"
+                    android:background="#4682B4" />
 
                 <ListView
                     android:id="@+id/commentLV"
                     android:layout_width="match_parent"
                     android:layout_height="600dp" />
-
 
 
             </LinearLayout>

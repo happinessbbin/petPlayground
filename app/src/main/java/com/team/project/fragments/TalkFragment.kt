@@ -44,9 +44,10 @@ class TalkFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_talk, container, false)
 
+
+        getFBBoardData()
         boardRVAdapter = BoardListLVAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter
-
 
 
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
@@ -64,9 +65,6 @@ class TalkFragment : Fragment() {
             startActivity(intent)
 
         }
-
-
-
 
 
         binding.writeBtn.setOnClickListener {
@@ -87,7 +85,7 @@ class TalkFragment : Fragment() {
         }
 
 
-        getFBBoardData()
+
 
         return binding.root
     }
@@ -103,7 +101,6 @@ class TalkFragment : Fragment() {
 
                     Log.d(TAG, dataModel.toString())
 //                    dataModel.key
-
                     val item = dataModel.getValue(BoardModel::class.java)
                     boardDataList.add(item!!)
                     boardKeyList.add(dataModel.key.toString())

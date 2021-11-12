@@ -62,7 +62,6 @@ class LoginActivity : AppCompatActivity() {
 
         /*** 아이디,패스워드 입력 시 ui변경 ***/
         onClick(binding.inputId)
-//        onClick(binding.inputPw)
 
         /*** 이메일으로 가입 화면 넘기기 ***/
         binding.btnJoin.setOnClickListener(View.OnClickListener {
@@ -240,6 +239,7 @@ class LoginActivity : AppCompatActivity() {
                 setColorAndAble(editable.length > 5)
             }
         })
+        return
     }
 
     /**
@@ -249,12 +249,17 @@ class LoginActivity : AppCompatActivity() {
         if(flag){
             binding.btnLogin.setBackgroundColor(Color.rgb(255,223,109))
             binding.btnLogin.setClickable(true)
+            return
         }else{
             binding.btnLogin.setClickable(false)
             binding.btnLogin.setBackgroundColor(Color.rgb(153,153,153))
+            return
         }
-
     }
+
+
+
+
 }
 
 
