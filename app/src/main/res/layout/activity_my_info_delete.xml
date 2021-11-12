@@ -24,12 +24,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
                 android:fontFamily="@font/jalnanotf"
                 android:gravity="center_horizontal"
                 android:text="내정보"
                 android:textColor="@color/down_black"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
 
         </RelativeLayout>
 
