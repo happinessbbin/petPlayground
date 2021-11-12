@@ -3,27 +3,34 @@ package com.team.project.board
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Tasks
 import com.team.project.R
 import com.team.project.databinding.ActivityBoardWriteBinding
 import com.team.project.utils.FBAuth
 import com.team.project.utils.FBRef
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.*
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 class BoardWriteActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityBoardWriteBinding
 
     private val TAG = BoardWriteActivity::class.java.simpleName
-
     private var isImageUpload = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,33 +40,9 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding.writeBtn.setOnClickListener {
 
-            CoroutineScope(Dispatchers.Main).launch {
-
-            val title = binding.titleArea.text.toString()
-            val content = binding.contentArea.text.toString()
-            val uid = FBAuth.getUid()
-            val time = FBAuth.getTime()
-
-            Log.d(TAG, title)
-            Log.d(TAG, content)
-
-            // 파이어베이스 store에 이미지를 저장하고 싶습니다
-            // 만약에 내가 게시글을 클릭했을 때, 게시글에 대한 정보를 받아와야 하는데
-            // 이미지 이름에 대한 정보를 모르기 때문에
-            // 이미지 이름을 문서의 key값으로 해줘서 이미지에 대한 정보를 찾기 쉽게 해놓음.
-
             val key = FBRef.boardRef.push().key.toString()
+            uploadImage(key)
 
-//                imageUpload(key)
-
-                FBRef.boardRef
-                    .child(key)
-                    .setValue(BoardModel(title, content, uid, time,imageUpload(key)))
-                Toast.makeText(this@BoardWriteActivity, "게시글 입력 완료", Toast.LENGTH_LONG).show()
-
-                finish()
-
-            }
         }
 
         binding.imageArea.setOnClickListener {
@@ -70,9 +53,15 @@ class BoardWriteActivity : AppCompatActivity() {
 
     }
 
-    suspend fun imageUpload(key : String) : String{
-        // Get the data from an ImageView as bytes
-        Log.d(TAG,"imageUpload111111111:")
+
+    /**
+     * @Service - uploadImage
+     * @param: String
+     * @return
+     */
+     fun uploadImage(key: String)  {
+
+         /*** 메모리 데이터에서 업로드 ***/
         val storage = Firebase.storage
         val storageRef = storage.reference
         val mountainsRef = storageRef.child(key + ".png")
@@ -87,34 +76,25 @@ class BoardWriteActivity : AppCompatActivity() {
 
         var uploadTask = mountainsRef.putBytes(data)
 
-        var url = "EMPTY"
+         /*** 다운로드 URL 가져오기 ***/
+        val urlTask = uploadTask.continueWithTask { task ->
+            mountainsRef.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                /*** 보드 생성 ***/
+                val title = binding.titleArea.text.toString()
+                val content = binding.contentArea.text.toString()
+                val uid = FBAuth.getUid()
+                val time = FBAuth.getTime()
 
-        uploadTask.addOnFailureListener {
-            // Handle unsuccessful uploads
-            Log.e("firebase", "Error getting data", it)
-        }.addOnSuccessListener { taskSnapshot ->
-            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            // ...
+                FBRef.boardRef
+                    .child(key)
+                    .setValue(BoardModel(title, content, uid, time,task.result.toString()))
 
-            val storageReference = Firebase.storage.reference.child(key + ".png")
-            Log.i("firebase", "Got value111 ${taskSnapshot.uploadSessionUri}")
-
-            Log.i("firebase", "Got value222 ${storage.getReferenceFromUrl(taskSnapshot.uploadSessionUri.toString())}")
-            url = taskSnapshot.uploadSessionUri.toString()
-
-            Log.d(TAG,"22222.33333333333:"+url)
+                finish()
+            }
         }
-
-        delay(1500L)
-
-
-        Log.d(TAG,"???:"+uploadTask)
-        Log.d(TAG,"???:"+mountainsRef.root)
-
-        return url
-
     }
-
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

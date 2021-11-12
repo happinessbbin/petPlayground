@@ -80,8 +80,6 @@ class BoardInsideActivity : AppCompatActivity() {
 
         binding.commentLV.adapter = commentAdapter
 
-
-
     }
 
 
@@ -128,7 +126,6 @@ class BoardInsideActivity : AppCompatActivity() {
                         name = userModel?.userName
                         profile= userModel?.profileImageUrl
 
-
                     }
                     override fun onCancelled(databaseError: DatabaseError) {
                         // Getting Post failed, log a message
@@ -155,8 +152,6 @@ class BoardInsideActivity : AppCompatActivity() {
 
                         )
                     )
-
-                Toast.makeText(this@BoardInsideActivity, "댓글 입력 완료", Toast.LENGTH_SHORT).show()
                 binding.commentArea.setText("")
             }.await()
         }
@@ -203,6 +198,7 @@ class BoardInsideActivity : AppCompatActivity() {
         storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
             if(task.isSuccessful) {
 
+                Log.d(TAG,"여기이미지는?"+task.result)
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)

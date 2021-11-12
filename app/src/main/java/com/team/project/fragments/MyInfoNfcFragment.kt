@@ -98,6 +98,7 @@ class MyInfoNfcFragment : Fragment() {
      * onClick - 로그인 클릭 안먹히게
      */
     fun onClick(inputText: EditText){
+        Log.d(TAG,"????????가니")
         //문자입력해야만 버튼이 활성화됨
         inputText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
@@ -114,6 +115,7 @@ class MyInfoNfcFragment : Fragment() {
      * setColorAndAble - 색상 변경 및 버튼 안먹히게
      */
     fun setColorAndAble(flag : Boolean){
+        Log.d(TAG,"????????"+flag)
         if(flag){
             binding.btnSubmit.setBackgroundColor(Color.rgb(52,152,219))
             binding.btnSubmit.setClickable(true)

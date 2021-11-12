@@ -52,13 +52,6 @@ class TalkFragment : Fragment() {
 
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
 
-            // 첫번째 방법으로는 listview에 있는 데이터 title content time 다 다른 액티비티로 전달해줘서 만들기
-//            val intent = Intent(context, BoardInsideActivity::class.java)
-//            intent.putExtra("title", boardDataList[position].title)
-//            intent.putExtra("content", boardDataList[position].content)
-//            intent.putExtra("time", boardDataList[position].time)
-//            startActivity(intent)
-
             // 두번째 방법으로는 Firebase에 있는 board에 대한 데이터의 id를 기반으로 다시 데이터를 받아오는 방법
             val intent = Intent(context, BoardInsideActivity::class.java)
             intent.putExtra("key", boardKeyList[position])

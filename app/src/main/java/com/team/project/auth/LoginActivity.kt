@@ -33,7 +33,6 @@ import kotlinx.coroutines.*
  * @Class : LoginActivity
  * @Description : Login 화면의 기능들의 클래스임.
  */
-
 class LoginActivity : AppCompatActivity() {
 
     // Firebase auth 초기화
@@ -70,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
 
         })
+
 
         /*** Email Login ***/
         binding.btnLogin.setOnClickListener {
@@ -241,6 +241,7 @@ class LoginActivity : AppCompatActivity() {
         })
         return
     }
+
 
     /**
      * setColorAndAble - 색상 변경 및 버튼 안먹히게

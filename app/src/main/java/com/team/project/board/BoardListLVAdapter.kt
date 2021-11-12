@@ -1,5 +1,6 @@
 package com.team.project.board
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Color
@@ -27,12 +28,20 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
 
 import com.bumptech.glide.request.RequestListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.team.project.firebaseuser.UserModel
+import com.team.project.utils.FBRef
 import okhttp3.OkHttpClient
 import java.io.InputStream
 import java.util.concurrent.TimeUnit
 
 
 class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
+
+    lateinit var profile :ImageView
+    lateinit var name:TextView
 
     override fun getCount(): Int {
         return boardList.size
@@ -46,6 +55,7 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
         return position.toLong()
     }
 
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         var view = convertView
@@ -57,26 +67,60 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
         val content = view?.findViewById<TextView>(R.id.contentArea)
         val time = view?.findViewById<TextView>(R.id.timeArea)
         val image = view?.findViewById<ImageView>(R.id.getImageArea)
+         profile = view?.findViewById(R.id.profile)!!
+         name = view?.findViewById(R.id.name)!!
 
-//        if(boardList[position].uid.equals(FBAuth.getUid())) {
-//            itemLinearLayoutView?.setBackgroundColor(Color.parseColor("#ffa500"))
-//        }
-
-        title!!.text = boardList[position].title
         content!!.text = boardList[position].content
         time!!.text = boardList[position].time
 
-        Log.d(TAG,"image:??????????????"+boardList[position].image)
+
         if (!boardList[position].image.equals("EMPTY")) {
             Glide.with(view!!.context)
                 .load(boardList[position].image)
                 .into(image!!)
         }
 
-
-        Log.d(TAG,"image:11111111111111"+boardList[position].image)
+        selectWriter(boardList[position].uid,view.context)
 
         return view!!
+    }
+
+    /***
+     * @Service: selectUserInfo(uid : String) -  (해당) User 조회
+     * @Param1 : String (uid)
+     * @Description : 사용자의 uid로 Firebase users객체에 있는 해당 uid 사용자의 정보를 찾음
+     ***/
+    fun selectWriter(uid :String,context: Context) {
+        Log.d(ContentValues.TAG, "SERVICE - selectWriter")
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // Firebase에 담긴 User를 UserModel 객체로 가져옴.
+                val userModel = dataSnapshot.getValue(UserModel::class.java)
+                name.setText(userModel?.userName)
+
+                // User Porfile 값이 "EMPTY" 가 아닐때만 프로필 셋팅
+                if (!userModel?.profileImageUrl.equals("EMPTY")) {
+                    Glide.with(context)
+                        .load(userModel?.profileImageUrl)
+                        .into(profile)
+                }else{
+                    Glide.with(context)
+                        .load(R.drawable.profilede)
+                        .into(profile)
+                }
+
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+
+        // 파이어베이스에 users객체의 해당 uid에 해당 이벤트를 전달
+        FBRef.userInfoRef.child(uid).addValueEventListener(postListener)
     }
 
 }
