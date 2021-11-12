@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="true" />
 
     <application
         android:name=".LoginAPI.Kakao"
@@ -28,6 +30,9 @@
         <activity android:name=".contentsList.ContentListActivity" />
         <activity
             android:name=".auth.JoinCompliteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Nfc"
             android:exported="false" />
         <activity
             android:name=".Join_User_PetInfo_Activity"

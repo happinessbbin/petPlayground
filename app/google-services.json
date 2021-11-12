@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "886086108101",
+    "firebase_url": "https://petfinder-b8300-default-rtdb.firebaseio.com",
     "project_id": "petfinder-b8300",
     "storage_bucket": "petfinder-b8300.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:886086108101:android:28a6e5c30e63e6114841ac",
+        "mobilesdk_app_id": "1:886086108101:android:63a41d97760baaee4841ac",
         "android_client_info": {
           "package_name": "com.team.project"
         }

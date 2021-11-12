@@ -3,6 +3,7 @@ package com.team.project.fragments
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -16,6 +17,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.team.project.MainActivity
+import com.team.project.Nfc
 import com.team.project.R
 import com.team.project.databinding.ActivityMyInfoNfcBinding
 import com.team.project.utils.FBAuth
@@ -64,10 +66,14 @@ class MyInfoNfcFragment : Fragment() {
                 var builder: AlertDialog.Builder = AlertDialog.Builder(context)
 
                 builder.setTitle("태그 등록하기")
-                builder.setMessage("스마트폰을 태그에 접촉하세요.")
+                builder.setMessage("태그를 등록하시겠습니까?")
                 builder.setIcon(R.drawable.ic_baseline_nfc_24)
 
                 builder.setPositiveButton("예") { dialog, id ->
+                    val intent = Intent(mainActivity, Nfc::class.java)
+                    Log.d(TAG,"binding.phoneNum.text:"+binding.phoneNum.text.toString())
+                    intent.putExtra("phoneNumber",binding.phoneNum.text.toString())
+                    startActivity(intent)
                     dialog.dismiss()
                 }
 
