@@ -74,9 +74,11 @@
         <action
             android:id="@+id/action_myInfoFragment_to_tipFragment"
             app:destination="@id/tipFragment" />
-
-
+        <action
+            android:id="@+id/action_myInfoFragment_to_myInfoNfcFragment"
+            app:destination="@id/myInfoNfcFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/myInfoChangePwFragment"
         android:name="com.team.project.MyInfoChangePwFragment"
@@ -114,5 +116,13 @@
         <action
             android:id="@+id/action_webViewFragment_to_tipFragment"
             app:destination="@id/tipFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myInfoNfcFragment"
+        android:name="com.team.project.fragments.MyInfoNfcFragment"
+        android:label="MyInfoNfcFragment" >
+        <action
+            android:id="@+id/action_myInfoNfcFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
     </fragment>
 </navigation>

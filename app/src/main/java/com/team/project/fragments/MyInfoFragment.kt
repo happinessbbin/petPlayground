@@ -89,7 +89,12 @@ class MyInfoFragment : Fragment() {
             it.findNavController().navigate(R.id.action_myInfoFragment_to_talkFragment)
         }
 
-        
+        // NFC 등록 버튼
+        binding.btnNfc.setOnClickListener(View.OnClickListener {
+            it.findNavController().navigate(R.id.action_myInfoFragment_to_myInfoNfcFragment)
+
+        })
+
         // 비밀번호 변경 버튼
         binding.btnPwchange.setOnClickListener(View.OnClickListener {
             it.findNavController().navigate(R.id.action_myInfoFragment_to_myInfoChangePwFragment)
