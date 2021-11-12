@@ -44,13 +44,12 @@ class BoardInsideActivity : AppCompatActivity() {
     private lateinit var commentAdapter : CommentLVAdapter
 
     private lateinit var userUid:String
+    private lateinit var commentUserUid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
-
-
 
         binding.boardSettingIcon.setOnClickListener {
             showDialog()
@@ -58,7 +57,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
         // 두번째 방법
         key = intent.getStringExtra("key").toString()
-
+        commentUserUid = FBAuth.getUid()
         CoroutineScope(Dispatchers.Main).launch {
             val job1 = CoroutineScope(Dispatchers.Default).async {
                 getBoardData(key)
@@ -68,7 +67,6 @@ class BoardInsideActivity : AppCompatActivity() {
             val job2 = CoroutineScope(Dispatchers.Default).async {
                 delay(100)
                 selectWriter(userUid,this@BoardInsideActivity)
-
             }.await()
         }
 
@@ -99,7 +97,6 @@ class BoardInsideActivity : AppCompatActivity() {
                     val item = dataModel.getValue(CommentModel::class.java)
                     commentDataList.add(item!!)
                 }
-                Log.d(TAG,"리스트111111111111111:"+commentDataList)
 
                 commentAdapter.notifyDataSetChanged()
             }
@@ -131,6 +128,7 @@ class BoardInsideActivity : AppCompatActivity() {
                         name = userModel?.userName
                         profile= userModel?.profileImageUrl
 
+
                     }
                     override fun onCancelled(databaseError: DatabaseError) {
                         // Getting Post failed, log a message
@@ -139,16 +137,12 @@ class BoardInsideActivity : AppCompatActivity() {
                 }
 
                 // 파이어베이스에 users객체의 해당 uid에 해당 이벤트를 전달
-                FBRef.userInfoRef.child(userUid).addValueEventListener(postListener)
+                FBRef.userInfoRef.child(commentUserUid).addValueEventListener(postListener)
             }.await()
 
             val job2 = CoroutineScope(Dispatchers.Default).async {
-                // comment
-                //   - BoardKey
-                //        - CommentKey
-                //            - CommentData
-                //            - CommentData
-                //            - CommentData
+                delay(200)
+
                 FBRef.commentRef
                     .child(key)
                     .push()
@@ -162,17 +156,13 @@ class BoardInsideActivity : AppCompatActivity() {
                         )
                     )
 
-//                Toast.makeText(this@BoardInsideActivity, "댓글 입력 완료", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BoardInsideActivity, "댓글 입력 완료", Toast.LENGTH_SHORT).show()
                 binding.commentArea.setText("")
             }.await()
         }
 
-
-
-
-
-
     }
+
 
     private fun showDialog(){
 
@@ -213,7 +203,6 @@ class BoardInsideActivity : AppCompatActivity() {
         storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
             if(task.isSuccessful) {
 
-                Log.d(TAG,"도데체..:"+task.result)
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)
@@ -274,7 +263,7 @@ class BoardInsideActivity : AppCompatActivity() {
      * @Param1 : String (uid)
      * @Description : 사용자의 uid로 Firebase users객체에 있는 해당 uid 사용자의 정보를 찾음
      ***/
-   fun selectWriter(uid :String,context: Context) {
+    fun selectWriter(uid :String,context: Context) {
         Log.d(ContentValues.TAG, "SERVICE - selectWriter")
 
         val postListener = object : ValueEventListener {
@@ -289,6 +278,10 @@ class BoardInsideActivity : AppCompatActivity() {
                 if (!userModel?.profileImageUrl.equals("EMPTY")) {
                     Glide.with(context)
                         .load(userModel?.profileImageUrl)
+                        .into(binding.myProfile)
+                }else{
+                    Glide.with(context)
+                        .load(R.drawable.profilede)
                         .into(binding.myProfile)
                 }
 

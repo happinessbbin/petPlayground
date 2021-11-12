@@ -56,6 +56,10 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
             Glide.with(view!!.context)
                 .load(commentList[position].profile)
                 .into(profile!!)
+        }else{
+            Glide.with(view!!.context)
+                .load(R.drawable.profilede)
+                .into(profile!!)
         }
 
         return view!!

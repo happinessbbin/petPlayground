@@ -45,7 +45,6 @@ class BoardEditActivity : AppCompatActivity() {
             editBoardData(key)
         }
 
-
     }
 
     private fun editBoardData(key : String){
@@ -97,7 +96,6 @@ class BoardEditActivity : AppCompatActivity() {
                 binding.titleArea.setText(dataModel?.title)
                 binding.contentArea.setText(dataModel?.content)
                 writerUid = dataModel!!.uid
-
 
             }
 
