@@ -21,7 +21,6 @@
             android:gravity="center"/>
         <TextView
             android:id="@+id/name"
-            android:text="title"
             android:textSize="10sp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
@@ -42,7 +41,7 @@
         android:layout_height="400dp"
         android:scaleType="centerCrop"
         />
-<!--    android:scaleType = "fitXY"-->
+    <!--    android:scaleType = "fitXY"-->
     <View
         android:layout_width="wrap_content"
         android:layout_height="0.3dp"
@@ -57,11 +56,11 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal">
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/ic_baseline_favorite_border_24" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_baseline_favorite_border_24" />
 
             <TextView
                 android:text="공감"
@@ -82,25 +81,25 @@
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
-    <TextView
-        android:id="@+id/contentArea"
-        android:text="content"
-        android:textSize="15sp"
-        android:layout_margin="5dp"
-        android:fontFamily="@font/micross"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+        <TextView
+            android:id="@+id/contentArea"
+            android:text="content"
+            android:textSize="15sp"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/micross"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
 
-    <TextView
-        android:id="@+id/timeArea"
-        android:text="time"
-        android:textSize="10sp"
-        android:textColor="#999999"
-        android:layout_marginLeft="20dp"
-        android:fontFamily="@font/micross"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/timeArea"
+            android:text="time"
+            android:textSize="10sp"
+            android:textColor="#999999"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/micross"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </LinearLayout>

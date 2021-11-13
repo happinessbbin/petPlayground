@@ -40,8 +40,6 @@ import java.util.concurrent.TimeUnit
 
 class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
 
-    lateinit var profile :ImageView
-    lateinit var name:TextView
 
     override fun getCount(): Int {
         return boardList.size
@@ -63,24 +61,22 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
         view = LayoutInflater.from(parent?.context).inflate(R.layout.board_list_item, parent, false)
 
         val itemLinearLayoutView = view?.findViewById<LinearLayout>(R.id.itemView)
-        val title = view?.findViewById<TextView>(R.id.titleArea)
         val content = view?.findViewById<TextView>(R.id.contentArea)
         val time = view?.findViewById<TextView>(R.id.timeArea)
         val image = view?.findViewById<ImageView>(R.id.getImageArea)
-         profile = view?.findViewById(R.id.profile)!!
-         name = view?.findViewById(R.id.name)!!
+        val profile = view?.findViewById<ImageView>(R.id.profile)!!
+        val name = view?.findViewById<TextView>(R.id.name)!!
+
+        selectWriter(boardList[position].uid,view.context,name,profile)
 
         content!!.text = boardList[position].content
         time!!.text = boardList[position].time
-
 
         if (!boardList[position].image.equals("EMPTY")) {
             Glide.with(view!!.context)
                 .load(boardList[position].image)
                 .into(image!!)
         }
-
-        selectWriter(boardList[position].uid,view.context)
 
         return view!!
     }
@@ -90,7 +86,7 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
      * @Param1 : String (uid)
      * @Description : 사용자의 uid로 Firebase users객체에 있는 해당 uid 사용자의 정보를 찾음
      ***/
-    fun selectWriter(uid :String,context: Context) {
+    fun selectWriter(uid :String,context: Context,name:TextView,profile:ImageView) {
         Log.d(ContentValues.TAG, "SERVICE - selectWriter")
 
         val postListener = object : ValueEventListener {
@@ -99,6 +95,7 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
 
                 // Firebase에 담긴 User를 UserModel 객체로 가져옴.
                 val userModel = dataSnapshot.getValue(UserModel::class.java)
+                Log.d(TAG,"anjdi?"+userModel?.userName)
                 name.setText(userModel?.userName)
 
                 // User Porfile 값이 "EMPTY" 가 아닐때만 프로필 셋팅
