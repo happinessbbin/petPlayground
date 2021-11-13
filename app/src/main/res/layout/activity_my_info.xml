@@ -289,7 +289,7 @@
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/cal" />
+                android:src="@drawable/calbe" />
 
             <ImageView
                 android:id="@+id/talkTap"
