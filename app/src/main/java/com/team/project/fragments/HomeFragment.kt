@@ -104,6 +104,10 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_myInfoFragment)
         }
 
+        binding.map.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_mapFragment)
+        }
+
         return binding.root
     }
 

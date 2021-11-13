@@ -55,7 +55,7 @@ class Nfc : AppCompatActivity() {
         super.onNewIntent(intent)
         val detectedTag : Tag? = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
 
-        val writeValue : String = "phone:" + phoneNumber
+        val writeValue : String = "tel:" + phoneNumber
 
 
         val message: NdefMessage = createTagMessage(writeValue)
@@ -78,7 +78,7 @@ class Nfc : AppCompatActivity() {
             if (ndef != null) {
                 ndef.connect()
                 if (!ndef.isWritable) {
-                    Toast.makeText(applicationContext, "NFC태그에 등록되지 않았씁니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "NFC태그에 등록되지 않았습니다.", Toast.LENGTH_SHORT).show()
                 }
                 ndef.writeNdefMessage(message)
                 Toast.makeText(applicationContext, "NFC태그에 전화번호를 등록 하였습니다.", Toast.LENGTH_SHORT).show()

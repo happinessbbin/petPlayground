@@ -7,21 +7,30 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.NFC" />
-    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:name=".LoginAPI.Kakao"
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-<!-- fragment_tip에서 새로 액티비티 만드는거-->
-        <activity android:name=".CalendarTodolist" android:exported="false"></activity>
-        <!-- android:hardwareAccelerated="false" -->
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true">
+        <meta-data android:name="com.kakao.sdk.AppKey"
+            android:value="12d9a1fd1f3a5b9027bf344de0a37896"/>
+        <!-- fragment_tip에서 새로 액티비티 만드는거 -->
+        <activity
+            android:name=".CalendarTodolist"
+            android:exported="false" /> <!-- android:hardwareAccelerated="false" -->
         <activity android:name=".setting.SettingActivity" />
         <activity android:name=".board.BoardEditActivity" />
         <activity android:name=".board.BoardInsideActivity" />
@@ -59,6 +68,7 @@
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

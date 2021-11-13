@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".KakaoMapAPI.MapFragment">
+
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btnPetHospital"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/yello" />
+
+            <ImageView
+                android:id="@+id/btnPetStore"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/red" />
+
+            <ImageView
+                android:id="@+id/btnPetHotel"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/sky_sumin" />
+
+            <ImageView
+                android:id="@+id/btnPetCoffe"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/down_black" />
+
+            <ImageView
+                android:id="@+id/btnPetFood"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/down_gray" />
+
+            <ImageView
+                android:id="@+id/btnAll"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/purple_700" />
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+    <net.daum.mf.map.api.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        app:layout_constraintVertical_bias="0.136" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E8EAF6"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"  />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
