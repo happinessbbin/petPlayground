@@ -1,45 +1,47 @@
 package com.team.project.fragments
 
+import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import com.team.project.MainActivity
+import com.team.project.R
+import kotlinx.android.synthetic.main.activity_content_show.view.*
+import android.webkit.WebSettings
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-
-import com.team.project.R
-import com.team.project.CalendarTodolist
-import com.team.project.contentsList.ContentListActivity
+import com.team.project.databinding.ActivityMyInfoBinding
 import com.team.project.databinding.FragmentTipBinding
-import kotlinx.android.synthetic.main.fragment_tip.*
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
+
 
 class TipFragment : Fragment() {
 
+    private var mWebView: WebView? = null
+    private var mWebSettings : WebSettings? = null
+
+    lateinit var mainActivity: MainActivity
     private lateinit var binding : FragmentTipBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-/*        btn_calendar_write.setOnClickListener {
-            try {
-                //TODO:프래그먼트에선 openFileInput이 안되서 액티비티로 해야하나
-                var inFs : FileInputStream = openFileInput("file.txt")
-                var txt = ByteArray(30)
-                inFs.read(txt)
-                var str = txt.toString(Charsets.UTF_8)
-                Toast.makeText(applicationContext, str, Toast.LENGTH_SHORT).show()
-                inFs.close()
-            } catch (e : IOException) {
-                Toast.makeText(applicationContext, "파일 없음", Toast.LENGTH_SHORT).show()
-            }
-        }*/
 
+    }
+
+    companion object {
+        fun newInstance() : TipFragment = TipFragment()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        mainActivity = getActivity() as MainActivity
     }
 
     override fun onCreateView(
@@ -48,33 +50,34 @@ class TipFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+        val view = inflater.inflate(R.layout.fragment_tip, container, false)
+
+        val url:String = arguments?.getString("url").toString()
+        Log.d(TAG,"URL:"+url)
+
+        // 웹뷰 시작
+        // 웹뷰 시작
+        mWebView = view.findViewById<WebView>(R.id.webView1)
+
+        mWebView?.setWebViewClient(WebViewClient()) // 클릭시 새창 안뜨게
+
+        mWebSettings = mWebView?.getSettings() //세부 세팅 등록
+
+        mWebSettings?.setJavaScriptEnabled(true) // 웹페이지 자바스클비트 허용 여부
+        mWebSettings?.setSupportMultipleWindows(false) // 새창 띄우기 허용 여부
+        mWebSettings?.setJavaScriptCanOpenWindowsAutomatically(false) // 자바스크립트 새창 띄우기(멀티뷰) 허용 여부
+        mWebSettings?.setLoadWithOverviewMode(true) // 메타태그 허용 여부
+        mWebSettings?.setUseWideViewPort(true) // 화면 사이즈 맞추기 허용 여부
+        mWebSettings?.setSupportZoom(false) // 화면 줌 허용 여부
+        mWebSettings?.setBuiltInZoomControls(false) // 화면 확대 축소 허용 여부
+        mWebSettings?.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN) // 컨텐츠 사이즈 맞추기
+        mWebSettings?.setCacheMode(WebSettings.LOAD_NO_CACHE) // 브라우저 캐시 허용 여부
+        mWebSettings?.setDomStorageEnabled(true) // 로컬저장소 허용 여부
+
+        mWebView?.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+
+        // binding 할당
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tip, container, false)
-
-        binding.btnSelectDate.setOnClickListener {
-
-//            val intent = Intent(context, ContentListActivity::class.java)
-//            intent.putExtra("category", "category1")
-//            startActivity(intent)
-            // create new instance of DatePickerFragment
-            val datePickerFragment = DatePickerDiaryFragment()
-            val supportFragmentManager = requireActivity().supportFragmentManager
-
-            // we have to implement setFragmentResultListener
-            supportFragmentManager.setFragmentResultListener(
-                "REQUEST_KEY",
-                viewLifecycleOwner
-            ) { resultKey, bundle ->
-                if (resultKey == "REQUEST_KEY") {
-                    val date = bundle.getString("SELECTED_DATE")
-                    tvSelectedDate.text = date
-                }
-            }
-
-            // show
-            datePickerFragment.show(supportFragmentManager, "DatePickerFragment")
-        }
-
-
 
         binding.homeTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_tipFragment_to_homeFragment)
@@ -89,19 +92,17 @@ class TipFragment : Fragment() {
         }
 
 
-        binding.btnCalendarWrite.setOnClickListener{
-            val intent = Intent(context, CalendarTodolist::class.java)
-            intent.putExtra("todolist", "todolist")
-            startActivity(intent)
-        }
-/*        binding.btnCalendarWrite.setOnClickListener{
-            val intent = Intent(context, ContentListActivity::class.java)
-            intent.putExtra("todolist", "todolist")
-            startActivity(intent)
-        }//새로 액티비티 열려고 했는데 실패*/
-
-        return binding.root
+        return view
     }
+
+
+    fun showWebView(url:String){
+
+
+
+    }
+
+
 
 
 }

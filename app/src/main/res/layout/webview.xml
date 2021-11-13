@@ -65,7 +65,7 @@
             <ImageView
                 android:id="@+id/tipTap"
                 android:layout_weight="1"
-                android:src="@drawable/cal"
+                android:src="@drawable/calbe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

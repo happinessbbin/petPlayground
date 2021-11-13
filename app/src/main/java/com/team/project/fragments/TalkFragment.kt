@@ -70,7 +70,9 @@ class TalkFragment : Fragment() {
         }
 
         binding.tipTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_talkFragment_to_tipFragment)
+            val bundle = Bundle()
+            bundle.putString("url", "https://tools.mypetlife.co.kr/")
+            it.findNavController().navigate(R.id.action_talkFragment_to_tipFragment, bundle)
         }
 
         binding.storeTap.setOnClickListener {

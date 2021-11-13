@@ -85,8 +85,13 @@ class HomeFragment : Fragment() {
         // banner
         banner(binding.root)
 
+
+
         binding.tipTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment)
+            val bundle = Bundle()
+            bundle.putString("url", "https://tools.mypetlife.co.kr/")
+            it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment, bundle)
+
         }
 
         binding.talkTap.setOnClickListener {
