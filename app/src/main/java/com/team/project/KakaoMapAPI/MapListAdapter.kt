@@ -67,12 +67,12 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
         when (keyword) {
             "동물병원" -> {
                 Glide.with(view)
-                    .load(R.drawable.imagehospital)
+                    .load(R.drawable.pethospital)
                     .into(image)
             }
             "애견카페" ->  {
                 Glide.with(view)
-                    .load(R.drawable.petcoffe)
+                    .load(R.drawable.petcafe)
                     .into(image)
             }
             "애견식당" ->  {
@@ -82,12 +82,12 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
             }
             "애견동반호텔" ->  {
                 Glide.with(view)
-                    .load(R.drawable.petcoffe)
+                    .load(R.drawable.pethotel)
                     .into(image)
             }
             "애견용품" ->  {
                 Glide.with(view)
-                    .load(R.drawable.petcoffe)
+                    .load(R.drawable.petmd)
                     .into(image)
             }
         }
