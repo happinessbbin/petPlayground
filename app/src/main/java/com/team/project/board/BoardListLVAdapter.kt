@@ -60,7 +60,7 @@ class BoardListLVAdapter(val boardList: MutableList<BoardModel>) : BaseAdapter()
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         var view = convertView
-
+        var flag = false
         view = LayoutInflater.from(parent?.context).inflate(R.layout.board_list_item, parent, false)
 
         val itemLinearLayoutView = view?.findViewById<LinearLayout>(R.id.itemView)
@@ -103,33 +103,30 @@ class BoardListLVAdapter(val boardList: MutableList<BoardModel>) : BaseAdapter()
                         committed: Boolean,
                         currentData: DataSnapshot?
                     ) {
-                        Log.d(TAG, "요기~~~" + currentData?.child("favorites")?.getValue())
 
-                        // Transaction completed
-//                        if(currentData.) {
-//
-//                        }else {
-//
-//                        }
                     }
-
-
-                    // 하트 누른 상태이면
-//                    if(contentDTOs!![position].favorites.containsKey(uid)){
-//                        //This is like status
-//                        viewholder.detailviewitem_favorite_imageview.setImageResource(R.drawable.ic_favorite)
-//                    }else{
-//                        //This is unlike status
-//                        viewholder.detailviewitem_favorite_imageview.setImageResource(R.drawable.ic_favorite_border)
-//                    }
-
         })
     }
+
+
+
+        /*** 하트 증가,감소 UI 변경 ***/
+        boardList[position].favorites.forEach { data ->
+            if (data.key.equals(FBAuth.getUid())) {
+
+                favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+
+            } else {
+                favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            }
+        }
+
 
     selectWriter(boardList[position].uid, view.context, name, profile)
 
     content!!.text = boardList[position].content
     time!!.text = boardList[position].time
+
 
     if (!boardList[position].image.equals("EMPTY"))
     {
