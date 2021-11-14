@@ -1,9 +1,13 @@
 package com.team.project.board
 
 data class BoardModel (
-    val title : String = "",
-    val content : String = "",
-    val uid : String = "",
-    val time : String = "",
-    val image: String = ""
-)
+    var title : String = "",
+    var content : String = "",
+    var uid : String = "",
+    var time : String = "",
+    var image: String = "",
+    var boardUid: String ="",
+    var favoriteCount : Int = 0,
+    var favorites: MutableMap<String, Boolean> = HashMap()){
+    data class Comment( var uid : String = "")
+}

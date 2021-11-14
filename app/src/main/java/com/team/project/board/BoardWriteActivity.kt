@@ -83,13 +83,16 @@ class BoardWriteActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 /*** 보드 생성 ***/
                 val title = binding.titleArea.text.toString()
+                Log.d(TAG,"보드 uid?"+taskId)
+                Log.d(TAG,"보드 uid?"+task)
                 val content = binding.contentArea.text.toString()
                 val uid = FBAuth.getUid()
                 val time = FBAuth.getTime()
+                val boardUid = key
 
                 FBRef.boardRef
                     .child(key)
-                    .setValue(BoardModel(title, content, uid, time,task.result.toString()))
+                    .setValue(BoardModel(title, content, uid, time,task.result.toString(), boardUid))
 
                 finish()
             }

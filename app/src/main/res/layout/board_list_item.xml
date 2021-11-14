@@ -56,31 +56,51 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal">
+
             <ImageView
+                android:id="@+id/favorite"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/ic_baseline_favorite_border_24" />
 
-            <TextView
-                android:text="공감"
-                android:textSize="10sp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/micross"
-                android:textColor="@color/down_gray"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"/>
+<!--            <CheckBox-->
+<!--                android:id="@+id/chk_like"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:button="@drawable/chk_like"/>-->
 
             <TextView
-                android:text="0개"
-                android:textSize="10sp"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/micross"
+                android:text="공감"
                 android:textColor="@color/down_gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/favoriteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/micross"
+                android:text="0"
+                android:textColor="@color/down_gray"
+                android:textSize="10sp" />
+
+            <TextView
                 android:layout_width="30dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/micross"
+                android:text="개"
+                android:textColor="@color/down_gray"
+                android:textSize="10sp" />
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/contentArea"
             android:text="content"

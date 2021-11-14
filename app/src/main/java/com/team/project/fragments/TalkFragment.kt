@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.google.firebase.database.*
 import com.team.project.R
 import com.team.project.board.BoardInsideActivity
 import com.team.project.board.BoardListLVAdapter
@@ -16,10 +17,6 @@ import com.team.project.board.BoardModel
 import com.team.project.board.BoardWriteActivity
 import com.team.project.databinding.FragmentTalkBinding
 import com.team.project.utils.FBRef
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-
 
 class TalkFragment : Fragment() {
 
@@ -52,13 +49,13 @@ class TalkFragment : Fragment() {
 
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
 
+            Log.d(TAG, "this~~~~"+ boardKeyList[position])
             // 두번째 방법으로는 Firebase에 있는 board에 대한 데이터의 id를 기반으로 다시 데이터를 받아오는 방법
             val intent = Intent(context, BoardInsideActivity::class.java)
             intent.putExtra("key", boardKeyList[position])
             startActivity(intent)
 
         }
-
 
         binding.writeBtn.setOnClickListener {
             val intent = Intent(context, BoardWriteActivity::class.java)
@@ -118,6 +115,8 @@ class TalkFragment : Fragment() {
         FBRef.boardRef.addValueEventListener(postListener)
 
     }
+
+
 
 
 }
