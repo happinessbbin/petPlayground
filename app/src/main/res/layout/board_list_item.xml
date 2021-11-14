@@ -64,13 +64,6 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/ic_baseline_favorite_border_24" />
 
-<!--            <CheckBox-->
-<!--                android:id="@+id/chk_like"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:button="@drawable/chk_like"/>-->
-
             <TextView
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
@@ -82,22 +75,14 @@
 
             <TextView
                 android:id="@+id/favoriteCount"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/micross"
                 android:text="0"
                 android:textColor="@color/down_gray"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
 
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/micross"
-                android:text="개"
-                android:textColor="@color/down_gray"
-                android:textSize="10sp" />
 
         </LinearLayout>
 
