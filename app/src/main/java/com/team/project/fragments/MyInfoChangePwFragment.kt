@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,9 +14,12 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.team.project.auth.LoginActivity
 import com.team.project.databinding.ActivityMyInfoChangePwBinding
+import com.team.project.fragments.MyInfoFragment
 import com.team.project.utils.FBAuth
 import com.team.project.utils.FBRef
 
@@ -70,7 +74,6 @@ class MyInfoChangePwFragment : Fragment() {
 
             builder.setPositiveButton("예") { dialog, id ->
                 modifyPasswordUser(FBAuth.getUid() , mainActivity.email)
-                it.findNavController().navigate(R.id.action_myInfoChangePwFragment_to_myInfoFragment)
             }
 
             builder.setNegativeButton("아니요") { dialog, id ->
@@ -147,15 +150,17 @@ class MyInfoChangePwFragment : Fragment() {
                 FBRef.userInfoRef.child(uid).child("userPassword").setValue(binding.inputRePw1.text.toString())
                 Toast.makeText(mainActivity, "비밀 번호 수정완료", Toast.LENGTH_LONG).show()
 
-                // 내정보 페이지로 이동
-//                mainActivity.change_to_Menu("MY_8")
+                //로그아웃처리
+                FirebaseAuth.getInstance().signOut()
+
+                val intent = Intent(mainActivity, LoginActivity::class.java)
+                startActivity(intent)
+
             } else {
                 Toast.makeText(context, "비밀번호가 같지 않습니다.", Toast.LENGTH_LONG).show()
-//                Toast.makeText(context, "실패", Toast.LENGTH_LONG).show()
             }
-        }
-        /******************************/
 
+        }
     }
 
 
