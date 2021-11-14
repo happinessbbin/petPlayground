@@ -135,5 +135,8 @@
         <action
             android:id="@+id/action_mapFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
 </navigation>

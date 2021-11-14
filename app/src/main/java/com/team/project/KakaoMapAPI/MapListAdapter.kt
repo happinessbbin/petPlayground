@@ -42,7 +42,7 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
         holder.image.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("url", itemList[position].url)
-            it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment, bundle)
+            it.findNavController().navigate(R.id.action_mapFragment_to_webViewFragment, bundle)
         }
     }
 
