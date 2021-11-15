@@ -18,10 +18,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/image"
+                    android:id="@+id/tv_image"
                     android:layout_width="110dp"
-                    android:layout_height="110dp"
-                    android:src="@drawable/imagehospital"/>
+                    android:layout_height="110dp" />
 
 
             <LinearLayout
@@ -40,7 +39,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/image"
+                        android:id="@+id/image2"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_margin="5dp"

@@ -137,7 +137,7 @@ class MapFragment : Fragment() {
 
         /*** ***/
 
-        searchKeyword("애견",pageNumber)
+        searchKeyword("동물",pageNumber)
 
         // binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
 
@@ -172,7 +172,7 @@ class MapFragment : Fragment() {
         onClick(binding.btnPetFood,"애견식당")
         onClick(binding.btnPetHotel,"애견동반호텔")
         onClick(binding.btnPetStore,"애견용품")
-        onClick(binding.btnAll,"애견")
+        onClick(binding.btnAll,"동물")
 
         return binding.root
     }
@@ -191,7 +191,6 @@ class MapFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(KakaoAPI::class.java)            // 통신 인터페이스를 객체로 생성
-        Log.d(TAG,"제발.."+longitude)
         val call = api.getSearchKeyword(API_KEY, keyword, page,longitude,latitude)    // 검색 조건 입력
 
         // API 서버에 요청
@@ -250,8 +249,8 @@ class MapFragment : Fragment() {
                     document.category_name,
                     document.x.toDouble(),
                     document.y.toDouble(),
-                    document.category_group_code,
-                    keyword)
+                    keyword,
+                    document.category_group_code)
 
 
                 listItems.add(item)
@@ -289,7 +288,8 @@ class MapFragment : Fragment() {
                     }else if(document.category_group_code.equals("AD5")){ // 호텔/숙박
 
                     }else{
-                        
+                        customImageResourceId = R.drawable.btnall
+                        customSelectedImageResourceId = R.drawable.btnall
                     }
 
                     markerType = MapPOIItem.MarkerType.CustomImage          // 마커 모양 (커스텀)

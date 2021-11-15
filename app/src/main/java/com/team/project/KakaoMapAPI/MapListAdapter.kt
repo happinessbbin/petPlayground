@@ -1,6 +1,8 @@
 package com.team.project.KakaoMapAPI
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,15 +25,18 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: MapListAdapter.ViewHolder, position: Int) {
+
+        var keyword:String = itemList[position].keyword
+        Log.d(TAG,"혹시111"+keyword)
+        setImage(keyword,holder.itemView,holder.image)
+
         holder.name.text = itemList[position].name
         holder.road.text = itemList[position].road
         holder.distance.text = itemList[position].distance
         holder.category.text = itemList[position].category
         holder.phone.text = itemList[position].phone
 
-       var keyword:String = itemList[position].keyword
 
-        setImage(keyword,holder.itemView,holder.image)
 
         // 아이템 클릭 이벤트
         holder.itemView.setOnClickListener {
@@ -52,7 +57,7 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
         val category: TextView = itemView.findViewById(R.id.tv_list_category)
         val distance: TextView = itemView.findViewById(R.id.tv_list_distance)
         val phone: TextView = itemView.findViewById(R.id.tv_list_phone)
-        val image: ImageView = itemView.findViewById(R.id.image)
+        val image: ImageView = itemView.findViewById(R.id.tv_image)
     }
 
     interface OnItemClickListener {
@@ -64,6 +69,9 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
     }
 
     fun setImage(keyword:String,view:View,image:ImageView){
+
+        Log.d(TAG,"혹시222"+keyword)
+
         when (keyword) {
             "동물병원" -> {
                 Glide.with(view)
