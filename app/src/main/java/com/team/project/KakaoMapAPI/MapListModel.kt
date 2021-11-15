@@ -8,5 +8,6 @@ class MapListModel(val name: String,      // 장소명
                    val phone:String,     // 전화번호
                    val category:String, // 카테고리 정보
                    val x: Double,         // 경도(Longitude)
-                   val y: Double,
-                    val keyword: String)         // 위도(Latitude)
+                   val y: Double, // 위도(Latitude)
+                   val keyword: String,
+                   val typoeCode:String )
