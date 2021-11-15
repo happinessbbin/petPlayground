@@ -21,6 +21,7 @@ import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -101,7 +102,7 @@ class MapFragment : Fragment() {
 
         searchKeyword("애견",pageNumber)
 
-       // binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+        // binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
 
 
 
@@ -130,7 +131,7 @@ class MapFragment : Fragment() {
 
 
         onClick(binding.btnPetHospital,"동물병원")
-        onClick(binding.btnPetCoffe,"애견카페")
+        onClick(binding.btnPetCafe,"애견카페")
         onClick(binding.btnPetFood,"애견식당")
         onClick(binding.btnPetHotel,"애견동반호텔")
         onClick(binding.btnPetStore,"애견용품")
@@ -139,7 +140,7 @@ class MapFragment : Fragment() {
         return binding.root
     }
 
-    fun onClick(btn:ImageView,keyword: String){
+    fun onClick(btn:Button,keyword: String){
         btn.setOnClickListener {
             searchKeyword(keyword,pageNumber)
         }
@@ -198,13 +199,13 @@ class MapFragment : Fragment() {
                 listItems.add(item)
 
                 // 지도에 마커 추가
-               // val point = MapPOIItem()
+                // val point = MapPOIItem()
 
                 val customMarker = MapPOIItem()
 
                 customMarker.setItemName("Default Marker");
                 customMarker.setTag(0);
-                customMarker.setCustomImageResourceId(R.drawable.imagehospital); // 마커 이미지.
+                customMarker.setCustomImageResourceId(R.drawable.pethospital); // 마커 이미지.
                 customMarker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
                 customMarker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
