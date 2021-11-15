@@ -4,6 +4,7 @@ import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.team.project.R
@@ -47,6 +48,11 @@ class BoardEditActivity : AppCompatActivity() {
         binding.editBtn.setOnClickListener {
             editBoardData(key)
         }
+
+        // 뒤로가기 버튼
+        binding.btnBack.setOnClickListener (View.OnClickListener {
+            finish()
+        })
 
     }
 
