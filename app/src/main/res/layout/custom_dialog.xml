@@ -11,7 +11,8 @@
         android:fontFamily="@font/jalnanotf"
         android:layout_width="match_parent"
         android:textColor="@color/white"
-        android:background="@drawable/background_radius_yellow"
+        android:background="@drawable/basicbutton_sky"
+        android:textSize="20dp"
         android:layout_margin="20dp"
         android:layout_height="wrap_content"/>
 
@@ -21,7 +22,8 @@
         android:fontFamily="@font/jalnanotf"
         android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:background="@drawable/background_radius_yellow"
+        android:background="#EA5148"
+        android:textSize="20dp"
         android:layout_margin="20dp"
         android:layout_height="wrap_content"/>
 

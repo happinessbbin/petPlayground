@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Tasks
@@ -50,6 +52,11 @@ class BoardWriteActivity : AppCompatActivity() {
             startActivityForResult(gallery, 100)
             isImageUpload = true
         }
+
+        // 뒤로가기 버튼
+        binding.btnBack.setOnClickListener (View.OnClickListener {
+            finish()
+        })
 
     }
 

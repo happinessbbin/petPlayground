@@ -26,25 +26,36 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <Button
+                            android:id="@+id/btnBack"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="16dp"
+                            android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
                         <TextView
                             android:id="@+id/titleArea"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
+                            android:gravity="center"
                             android:text="title"
                             android:textColor="@color/black"
                             android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:layout_width="match_parent"
-                            android:layout_marginRight="50dp"
-                            android:layout_marginLeft="50dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"/>
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/boardSettingIcon"
-                            android:visibility="invisible"
                             android:layout_width="20dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/main_menu"
                             android:layout_margin="10dp"
+                            android:src="@drawable/main_menu"
+                            android:visibility="invisible"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,6 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:textColor="@color/black"
+                    android:layout_margin="10dp"
                     android:text="여기는 내용 영역" />
 
                 <View

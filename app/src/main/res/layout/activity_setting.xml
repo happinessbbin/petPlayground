@@ -12,7 +12,7 @@
         android:text="LOGOUT"
         android:fontFamily="@font/jalnanotf"
         android:textColor="@color/white"
-        android:background="@drawable/background_radius_yellow"
+        android:background="@drawable/basicbutton_yellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

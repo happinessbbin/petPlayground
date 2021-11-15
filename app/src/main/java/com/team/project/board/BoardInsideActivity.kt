@@ -80,6 +80,11 @@ class BoardInsideActivity : AppCompatActivity() {
 
         binding.commentLV.adapter = commentAdapter
 
+        // 뒤로가기 버튼
+        binding.btnBack.setOnClickListener (View.OnClickListener {
+            finish()
+        })
+
     }
 
 
@@ -163,7 +168,7 @@ class BoardInsideActivity : AppCompatActivity() {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("게시글 수정/삭제")
+            .setTitle("게시글 수정·삭제")
 
         val alertDialog = mBuilder.show()
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
