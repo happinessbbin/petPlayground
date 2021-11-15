@@ -14,9 +14,9 @@
 
     <!-- 예시 -> 나중 변경 -->
     <ImageView
-        android:layout_width="211dp"
-        android:layout_height="75dp"
-        android:src="@drawable/count4"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:src="@drawable/counts3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"

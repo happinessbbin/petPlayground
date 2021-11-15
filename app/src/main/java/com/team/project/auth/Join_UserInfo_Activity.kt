@@ -6,6 +6,7 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.team.project.auth.JoinCompliteActivity
 import com.team.project.databinding.ActivityJoinUerInfoBinding
 import java.util.regex.Pattern
 import com.team.project.firebaseuser.UserService
@@ -53,7 +54,7 @@ class Join_UserInfo_Activity : AppCompatActivity() {
             /*************** 유효성 검사 ***************/
             if(NullCheck(inputName)) {
                 Toast.makeText(this, MSG1, Toast.LENGTH_LONG).show()
-             
+
                 return@setOnClickListener
             }
 
@@ -125,12 +126,12 @@ class Join_UserInfo_Activity : AppCompatActivity() {
             var userService = UserService()
 
             // 파이어베이스에 추가
-            userService.createFireBaseAuthUser(usermodel,this,Join_User_PetInfo_Activity::class.java)
+            userService.createFireBaseAuthUser(usermodel,this,JoinCompliteActivity::class.java)
             /*********************************************/
 
 
             /** 준영님 글쓰기 테스트 할 때 위에꺼 주석하고 이거 주석 풀고 ㄱㄱ!!**/
-           // userService.createFireBaseAuthUser(usermodel,this, CommonNavActivity::class.java)
+            // userService.createFireBaseAuthUser(usermodel,this, CommonNavActivity::class.java)
 
 
         }

@@ -14,9 +14,9 @@
 
     <!-- 예시 -> 나중 변경 ( 순서 아이콘으로 ) -->
     <ImageView
-        android:layout_width="211dp"
-        android:layout_height="75dp"
-        android:src="@drawable/count1"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:src="@drawable/counts1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
