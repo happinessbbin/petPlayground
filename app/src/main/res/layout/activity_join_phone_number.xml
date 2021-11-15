@@ -19,7 +19,7 @@
         android:src="@drawable/counts1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.121" />
@@ -37,7 +37,7 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.259" />
@@ -55,7 +55,7 @@
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.316" />
@@ -63,7 +63,7 @@
     <!-- 에딧텍스트 - 휴대폰 번호 -->
     <EditText
         android:id="@+id/input_phone_num"
-        android:layout_width="380dp"
+        android:layout_width="328dp"
         android:layout_height="56dp"
         android:background="@drawable/round"
         android:ems="10"
@@ -81,7 +81,7 @@
     <!-- 버튼 - 인증 번호 요청 -->
     <Button
         android:id="@+id/send_sms_button"
-        android:layout_width="380dp"
+        android:layout_width="328dp"
         android:layout_height="56dp"
         android:background="@drawable/requestbutton_yellow"
         android:fontFamily="@font/jalnan"
@@ -102,7 +102,7 @@
 
     <EditText
         android:id="@+id/input_check_num"
-        android:layout_width="380dp"
+        android:layout_width="328dp"
         android:layout_height="56dp"
         android:background="@drawable/round"
         android:ems="10"
@@ -120,7 +120,7 @@
 
     <Button
         android:id="@+id/check_button"
-        android:layout_width="380dp"
+        android:layout_width="328dp"
         android:layout_height="56dp"
         android:background="@drawable/requestbutton_yellow"
         android:fontFamily="@font/jalnan"

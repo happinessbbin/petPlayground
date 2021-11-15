@@ -9,7 +9,7 @@
     tools:context=".KakaoMapAPI.MapFragment"
     android:gravity="bottom"
     app:umanoScrollableView="@id/rv_list"
-    app:umanoDragView="@id/slide_layout">
+    app:umanoDragView="@id/rv_list">
 
 
 
@@ -47,6 +47,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="3dp"
                     android:background="@drawable/button_round_white"
+                    app:itemIconTint="@color/text_selector"
+                    app:itemTextColor="@color/text_selector"
                     android:fontFamily="@font/jalnan"
                     android:text="전체" />
 
@@ -113,23 +115,65 @@
         android:background="@drawable/alert_white_border">
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/alert_white_border"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/alert_white_border"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
 
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/white"
+            tools:ignore="MissingConstraints"
+            android:weightSum="5"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/homeTap"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/homebe" />
+
+            <ImageView
+                android:id="@+id/tipTap"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/calbe" />
+
+            <ImageView
+                android:id="@+id/map"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/map" />
+
+            <ImageView
+                android:id="@+id/talkTap"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/whishbe" />
+
+            <ImageView
+                android:id="@+id/storeTap"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/mypagebe" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
-
 
 </layout>

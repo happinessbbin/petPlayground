@@ -27,6 +27,8 @@
             app:layout_constraintVertical_bias="0.121" />
 
         <!-- 텍스트뷰 - 회원가입 정보 등록 -->
+
+        <!-- 텍스트뷰 - 안내문구 -->
         <TextView
             android:id="@+id/btn1"
             android:layout_width="wrap_content"
@@ -39,12 +41,13 @@
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.104"
+            app:layout_constraintHorizontal_bias="0.267"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.259" />
 
-        <!-- 텍스트뷰 - 안내문구 -->
+        <!-- 에딧텍스트 - 이름 -->
+
         <TextView
             android:id="@+id/btn3"
             android:layout_width="wrap_content"
@@ -57,15 +60,14 @@
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.316" />
 
-        <!-- 에딧텍스트 - 이름 -->
         <EditText
             android:id="@+id/inputName"
-            android:layout_width="380dp"
+            android:layout_width="328dp"
             android:layout_height="56dp"
             android:background="@drawable/round"
             android:ems="10"
@@ -83,7 +85,7 @@
         <!-- 에딧텍스트 - 이메일 -->
         <EditText
             android:id="@+id/inputEmail"
-            android:layout_width="380dp"
+            android:layout_width="328dp"
             android:layout_height="56dp"
             android:background="@drawable/round"
             android:ems="10"
@@ -101,7 +103,7 @@
         <!-- 에딧텍스트 - 비밀번호(8자리 이상) -->
         <EditText
             android:id="@+id/inputPw"
-            android:layout_width="380dp"
+            android:layout_width="328dp"
             android:layout_height="56dp"
             android:background="@drawable/round"
             android:ems="10"
@@ -119,7 +121,7 @@
         <!-- 에딧텍스트 - 비밀번호 재확인 -->
         <EditText
             android:id="@+id/inputRePw"
-            android:layout_width="380dp"
+            android:layout_width="328dp"
             android:layout_height="56dp"
             android:background="@drawable/round"
             android:ems="10"
@@ -137,7 +139,7 @@
         <!-- 버튼 - 등록 -->
         <Button
             android:id="@+id/btnregist"
-            android:layout_width="380dp"
+            android:layout_width="328dp"
             android:layout_height="56dp"
             android:background="@drawable/basicbutton_yellow"
             android:fontFamily="@font/jalnan"

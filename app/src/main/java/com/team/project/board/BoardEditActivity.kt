@@ -23,6 +23,7 @@ import com.team.project.firebaseuser.UserModel
 class BoardEditActivity : AppCompatActivity() {
 
     private lateinit var key:String
+    private lateinit var image:String
 
     private lateinit var binding : ActivityBoardEditBinding
 
@@ -38,6 +39,8 @@ class BoardEditActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_edit)
 
         key = intent.getStringExtra("key").toString()
+        image = intent.getStringExtra("image").toString()
+
         getBoardData(key)
         getImageData(key)
 
@@ -52,10 +55,14 @@ class BoardEditActivity : AppCompatActivity() {
         FBRef.boardRef
             .child(key)
             .setValue(
-                BoardModel(binding.titleArea.text.toString(),
+                BoardModel(
+                    binding.titleArea.text.toString(),
                     binding.contentArea.text.toString(),
                     writerUid,
-                    FBAuth.getTime())
+                    FBAuth.getTime(),
+                    image,
+                    key
+                    )
             )
 
         Toast.makeText(this, "수정완료", Toast.LENGTH_LONG).show()
@@ -110,4 +117,11 @@ class BoardEditActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * @Service : NullCheck - null이나 "" 공백 체크
+     * @return : Blooean (빈값이면 : true | 빈값이 아니면: false)
+     */
+    fun NullCheck(inputData : String):Boolean {
+        return inputData.isEmpty() || inputData.equals("")
+    }
 }

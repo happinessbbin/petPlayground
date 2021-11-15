@@ -45,6 +45,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
     private lateinit var userUid:String
     private lateinit var commentUserUid:String
+    private lateinit var image:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +70,6 @@ class BoardInsideActivity : AppCompatActivity() {
                 selectWriter(userUid,this@BoardInsideActivity)
             }.await()
         }
-
 
         binding.commentBtn.setOnClickListener {
             insertComment(key,this)
@@ -105,7 +105,6 @@ class BoardInsideActivity : AppCompatActivity() {
             }
         }
         FBRef.commentRef.child(key).addValueEventListener(postListener)
-
 
     }
 
@@ -172,6 +171,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
             val intent = Intent(this, BoardEditActivity::class.java)
             intent.putExtra("key",key)
+            intent.putExtra("image",image)
             startActivity(intent)
         }
 
@@ -182,8 +182,6 @@ class BoardInsideActivity : AppCompatActivity() {
             finish()
 
         }
-
-
 
     }
 
@@ -199,6 +197,8 @@ class BoardInsideActivity : AppCompatActivity() {
             if(task.isSuccessful) {
 
                 Log.d(TAG,"여기이미지는?"+task.result)
+
+                image = task.result.toString()
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)

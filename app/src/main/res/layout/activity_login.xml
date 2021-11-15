@@ -17,8 +17,9 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/maintitle"
+            android:layout_height="200dp"
+            android:src="@drawable/titlebar2"
+            android:layout_margin="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
