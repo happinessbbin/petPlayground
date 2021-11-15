@@ -158,9 +158,11 @@
 
             <ImageView
                 android:id="@+id/commentBtn"
-                android:src="@drawable/btnwrite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:src="@drawable/content1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"/>
 
         </LinearLayout>
 
