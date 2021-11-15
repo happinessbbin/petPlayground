@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_talkFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
+        <action
+            android:id="@+id/action_talkFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/myInfoFragment"
@@ -80,6 +83,9 @@
         <action
             android:id="@+id/action_myInfoFragment_to_myInfoNfcFragment"
             app:destination="@id/myInfoNfcFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
 
     <fragment
@@ -119,6 +125,18 @@
         <action
             android:id="@+id/action_webViewFragment_to_tipFragment"
             app:destination="@id/tipFragment" />
+        <action
+            android:id="@+id/action_webViewFragment_to_talkFragment2"
+            app:destination="@id/talkFragment" />
+        <action
+            android:id="@+id/action_webViewFragment_to_tipFragment2"
+            app:destination="@id/tipFragment" />
+        <action
+            android:id="@+id/action_webViewFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_webViewFragment_to_myInfoFragment2"
+            app:destination="@id/myInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/myInfoNfcFragment"
@@ -138,5 +156,11 @@
         <action
             android:id="@+id/action_mapFragment_to_webViewFragment"
             app:destination="@id/webViewFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_talkFragment"
+            app:destination="@id/talkFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
     </fragment>
 </navigation>

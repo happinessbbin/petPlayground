@@ -265,10 +265,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/mainColor"/>
+                android:background="@color/mainColor" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
@@ -292,6 +298,13 @@
                 android:src="@drawable/calbe" />
 
             <ImageView
+                android:id="@+id/map"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/mapbe" />
+
+            <ImageView
                 android:id="@+id/talkTap"
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
@@ -306,5 +319,6 @@
                 android:src="@drawable/mypage" />
 
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -29,12 +29,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout3">
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/mainColor" />
+                android:background="@color/mainColor"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,37 +60,44 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/white"
-            android:weightSum="4"
+            android:weightSum="5"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:id="@+id/homeTap"
-                android:layout_width="match_parent"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/homebe" />
 
             <ImageView
                 android:id="@+id/tipTap"
-                android:layout_width="match_parent"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/calbe" />
 
             <ImageView
+                android:id="@+id/map"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/mapbe" />
+
+            <ImageView
                 android:id="@+id/talkTap"
-                android:layout_width="match_parent"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/whish" />
 
             <ImageView
                 android:id="@+id/storeTap"
-                android:layout_width="match_parent"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/mypagebe" />
