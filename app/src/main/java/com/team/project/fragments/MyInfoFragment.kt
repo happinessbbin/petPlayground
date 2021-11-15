@@ -91,6 +91,10 @@ class MyInfoFragment : Fragment() {
             it.findNavController().navigate(R.id.action_myInfoFragment_to_talkFragment)
         }
 
+        binding.map.setOnClickListener {
+            it.findNavController().navigate(R.id.action_myInfoFragment_to_mapFragment)
+        }
+
         // NFC 등록 버튼
         binding.btnNfc.setOnClickListener(View.OnClickListener {
             it.findNavController().navigate(R.id.action_myInfoFragment_to_myInfoNfcFragment)

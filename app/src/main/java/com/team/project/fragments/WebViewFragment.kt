@@ -78,7 +78,7 @@ class WebViewFragment : Fragment() {
         binding.tipTap.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("url", "https://tools.mypetlife.co.kr/")
-            it.findNavController().navigate(R.id.action_webViewFragment_to_tipFragment)
+            it.findNavController().navigate(R.id.action_webViewFragment_to_tipFragment, bundle)
         }
 
         binding.talkTap.setOnClickListener {
