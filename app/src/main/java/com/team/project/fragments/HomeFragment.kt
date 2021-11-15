@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
         setUrl(binding.webView4,"https://www.ban-life.com/content/view?id=5165",bundle)
 
 
-        setUrl(binding.category1,"https://m.holapet.com/place/pensions/region",bundle)
+        setUrl(binding.category1,"https://m.holapet.com/place/category/13",bundle)
         setUrl(binding.category2,"https://m.holapet.com/place/category/4",bundle)
         setUrl(binding.category3,"https://m.holapet.com/place/category/11",bundle)
         setUrl(binding.category4,"https://m.holapet.com/place/category/2",bundle)
