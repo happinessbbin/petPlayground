@@ -4,8 +4,10 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Context.LOCATION_SERVICE
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.IntentSender
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,14 +19,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.team.project.MainActivity
 import com.team.project.R
 import android.content.pm.PackageManager
-import android.location.LocationManager
+import android.location.*
+import android.location.LocationListener
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.tasks.OnFailureListener
+import com.team.project.SplashActivity
 
 import com.team.project.databinding.FragmentMapBinding
 import net.daum.mf.map.api.MapPOIItem
@@ -35,6 +45,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import net.daum.mf.map.api.CameraUpdateFactory
 
 class MapFragment : Fragment() {
 
@@ -43,9 +54,26 @@ class MapFragment : Fragment() {
     private lateinit var mainActivity:MainActivity
 
 
+    private val TAG = "googlemap_example"
+    var mLocationManager: LocationManager? = null
+    var mLocationListener: LocationListener? = null
+
+    private var fusedLocationProviderClient: FusedLocationProviderClient? = null
+    private var locationRequest: LocationRequest? = null
+    private var longitude = 0.0
+    private var latitude = 0.0
+
     companion object {
         private val BASE_URL = "https://dapi.kakao.com/"
-        const val API_KEY = "KakaoAK c4dc56e62c47c6173e7c78f71f59f279"  // REST API 키
+        const val API_KEY = "KakaoAK c4dc56e62c47c6173e7c78f71f59f279"  // REST API 키\
+
+        private val TAG = SplashActivity::class.java.simpleName
+        private const val GPS_UTIL_LOCATION_PERMISSION_REQUEST_CODE = 100
+        private const val GPS_UTIL_LOCATION_RESOLUTION_REQUEST_CODE = 101
+        const val DEFAULT_LOCATION_REQUEST_PRIORITY =
+            LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+        const val DEFAULT_LOCATION_REQUEST_INTERVAL = 20000L
+        const val DEFAULT_LOCATION_REQUEST_FAST_INTERVAL = 10000L
     }
 
     private val ACCESS_FINE_LOCATION = 1000     // Request Code
@@ -71,9 +99,13 @@ class MapFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        checkLocationPermission()
         // binding 할당
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_map, container, false)
+
+        longitude = mainActivity.longitude
+        latitude = mainActivity.latitude
+
 
         // 리사이클러 뷰
         binding.rvList.layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL, false)
@@ -89,10 +121,15 @@ class MapFragment : Fragment() {
             Toast.makeText(mainActivity, "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
         }
 
+        // 권한이 있는 상태
+        startTracking()
+
 
         // 리스트 아이템 클릭 시 해당 위치로 이동
         listAdapter.setItemClickListener(object: MapListAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
+                // 권한이 있는 상태
+                stopTracking()
                 val mapPoint = MapPoint.mapPointWithGeoCoord(listItems[position].y, listItems[position].x)
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true)
             }
@@ -154,7 +191,8 @@ class MapFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(KakaoAPI::class.java)            // 통신 인터페이스를 객체로 생성
-        val call = api.getSearchKeyword(API_KEY, keyword, page,129.07707081187226,35.20486744428367)    // 검색 조건 입력
+        Log.d(TAG,"제발.."+longitude)
+        val call = api.getSearchKeyword(API_KEY, keyword, page,longitude,latitude)    // 검색 조건 입력
 
         // API 서버에 요청
         call.enqueue(object: Callback<ResultSearchKeyword> {
@@ -171,6 +209,25 @@ class MapFragment : Fragment() {
                 Log.w("LocalSearch", "통신 실패: ${t.message}")
             }
         })
+    }
+
+//    override fun onStart() {
+//        super.onStart()
+//        checkLocationPermission()
+//    }
+
+    private fun checkLocationPermission() {
+        val accessLocation =
+            ActivityCompat.checkSelfPermission(mainActivity, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (accessLocation == PackageManager.PERMISSION_GRANTED) {
+            checkLocationSetting()
+        } else {
+            ActivityCompat.requestPermissions(
+                mainActivity,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                MapFragment.GPS_UTIL_LOCATION_PERMISSION_REQUEST_CODE
+            )
+        }
     }
 
     // 검색 결과 처리 함수
@@ -193,6 +250,7 @@ class MapFragment : Fragment() {
                     document.category_name,
                     document.x.toDouble(),
                     document.y.toDouble(),
+                    document.category_group_code,
                     keyword)
 
 
@@ -217,7 +275,32 @@ class MapFragment : Fragment() {
                         document.x.toDouble())
                     markerType = MapPOIItem.MarkerType.BluePin
                     selectedMarkerType = MapPOIItem.MarkerType.RedPin
+
+                    // TODO("여기 이미지 다시.. ")
+                    // 커스텀 마커 이미지
+                    if(document.category_group_code.equals("HP8")){ // 병원
+                        customImageResourceId = R.drawable.hospitals
+                        customSelectedImageResourceId = R.drawable.hospitals
+                    }else if(document.category_group_code.equals("CE7")){ // 카페
+                        customImageResourceId = R.drawable.hospitals
+                        customSelectedImageResourceId = R.drawable.hospitals
+                    }else if(document.category_group_code.equals("FD6")){ //  식당
+
+                    }else if(document.category_group_code.equals("AD5")){ // 호텔/숙박
+
+                    }else{
+                        
+                    }
+
+                    markerType = MapPOIItem.MarkerType.CustomImage          // 마커 모양 (커스텀)
+
+                    selectedMarkerType = MapPOIItem.MarkerType.CustomImage  // 클릭 시 마커 모양 (커스텀)
+
+                    isCustomImageAutoscale = false      // 커스텀 마커 이미지 크기 자동 조정
+                    setCustomImageAnchor(0.5f, 1.0f)    // 마커 이미지 기준점
                 }
+
+
                 binding.mapView.addPOIItem(customMarker)
             }
             listAdapter.notifyDataSetChanged()
@@ -235,6 +318,7 @@ class MapFragment : Fragment() {
     private fun permissionCheck() {
         val preference = mainActivity.getPreferences(MODE_PRIVATE)
         val isFirstCheck = preference.getBoolean("isFirstPermissionCheck", true)
+
         if (ContextCompat.checkSelfPermission(mainActivity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // 권한이 없는 상태
             if (ActivityCompat.shouldShowRequestPermissionRationale(mainActivity, Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -268,8 +352,7 @@ class MapFragment : Fragment() {
                 }
             }
         } else {
-            // 권한이 있는 상태
-            startTracking()
+
         }
     }
 
@@ -278,9 +361,97 @@ class MapFragment : Fragment() {
         binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
     }
 
+    // 위치추적 중지
+    private fun stopTracking() {
+        binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
+    }
+
     // GPS가 켜져있는지 확인
     private fun checkLocationService(): Boolean {
         val locationManager = mainActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
+
+
+    private fun checkLocationSetting() {
+        locationRequest = LocationRequest.create()
+        locationRequest!!.setPriority(DEFAULT_LOCATION_REQUEST_PRIORITY)
+        locationRequest!!.setInterval(DEFAULT_LOCATION_REQUEST_INTERVAL)
+        locationRequest!!.setFastestInterval(DEFAULT_LOCATION_REQUEST_FAST_INTERVAL)
+        val settingsClient = LocationServices.getSettingsClient(mainActivity)
+        val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+            .setAlwaysShow(true)
+        settingsClient.checkLocationSettings(builder.build())
+            .addOnSuccessListener(mainActivity) {
+                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mainActivity)
+
+                if (ActivityCompat.checkSelfPermission(
+                        mainActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        mainActivity,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+
+                }
+                fusedLocationProviderClient!!.requestLocationUpdates(
+                    locationRequest,
+                    locationCallback,
+                    null
+                )
+            }
+            .addOnFailureListener(mainActivity, OnFailureListener { e ->
+                val statusCode = (e as ApiException).statusCode
+                when (statusCode) {
+                    LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> try {
+                        val rae = e as ResolvableApiException
+                        rae.startResolutionForResult(
+                            mainActivity,
+                            GPS_UTIL_LOCATION_RESOLUTION_REQUEST_CODE
+                        )
+                    } catch (sie: IntentSender.SendIntentException) {
+                        Log.w(
+                            TAG,
+                            "unable to start resolution for result due to " + sie.localizedMessage
+                        )
+                    }
+                    LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
+                        val errorMessage =
+                            "location settings are inadequate, and cannot be fixed here. Fix in Settings."
+                        Log.e(TAG, errorMessage)
+                    }
+                }
+            })
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GPS_UTIL_LOCATION_RESOLUTION_REQUEST_CODE) {
+            if (resultCode == AppCompatActivity.RESULT_OK) {
+                checkLocationSetting()
+            } else {
+            }
+        }
+    }
+
+    private val locationCallback: LocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            super.onLocationResult(locationResult)
+            longitude = locationResult.lastLocation.longitude
+            latitude = locationResult.lastLocation.latitude
+            fusedLocationProviderClient!!.removeLocationUpdates(this)
+
+            Log.d(TAG,"제발2222.."+longitude)
+
+        }
+
+        override fun onLocationAvailability(locationAvailability: LocationAvailability) {
+            super.onLocationAvailability(locationAvailability)
+            Log.i(TAG, "onLocationAvailability - $locationAvailability")
+        }
+    }
+
+
+
 }
