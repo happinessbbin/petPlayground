@@ -38,22 +38,22 @@ class SplashActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-//        if(auth.currentUser?.uid == null) {
-//            Log.d("SplashActivity", "null")
-//
-//            Handler().postDelayed({
-//                startActivity(Intent(this, LoginActivity::class.java))
-//                finish()
-//            }, 4000)
-//
-//        } else {
-//            Log.d("SplashActivity", "not null")
-//
-//            Handler().postDelayed({
-//                startActivity(Intent(this, MainActivity::class.java))
-//                finish()
-//            }, 4000)
-//        }
+        if(auth.currentUser?.uid == null) {
+            Log.d("SplashActivity", "null")
+
+            Handler().postDelayed({
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }, 4000)
+
+        } else {
+            Log.d("SplashActivity", "not null")
+
+            Handler().postDelayed({
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }, 4000)
+        }
 
     }
 
@@ -178,28 +178,26 @@ class SplashActivity : AppCompatActivity() {
             latitude = locationResult.lastLocation.latitude
             fusedLocationProviderClient!!.removeLocationUpdates(this)
 
-            Log.d(TAG,"????????11111111111??P:"+latitude)
-            Log.d(TAG,"????????1111111112222222211??P:"+auth.currentUser?.uid)
 
-            if(auth.currentUser?.uid != null) {
-                Log.d("SplashActivity", "null")
-
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
-                intent.putExtra("latitude", latitude)
-                intent.putExtra("longitude", longitude)
-                startActivity(intent)
-                finish()
-
-            } else {
-                Log.d("SplashActivity", "not null")
-
-                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-                intent.putExtra("latitude", latitude)
-                intent.putExtra("longitude", longitude)
-                startActivity(intent)
-                finish()
-
-            }
+//            if(auth.currentUser?.uid != null) {
+//                Log.d("SplashActivity", "null")
+//
+//                val intent = Intent(this@SplashActivity, MainActivity::class.java)
+//                intent.putExtra("latitude", latitude)
+//                intent.putExtra("longitude", longitude)
+//                startActivity(intent)
+//                finish()
+//
+//            } else {
+//                Log.d("SplashActivity", "not null")
+//
+//                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+//                intent.putExtra("latitude", latitude)
+//                intent.putExtra("longitude", longitude)
+//                startActivity(intent)
+//                finish()
+//
+//            }
 
         }
 

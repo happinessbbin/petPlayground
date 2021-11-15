@@ -23,12 +23,13 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
     override fun getItemCount(): Int {
         return itemList.size
     }
-
+    var keyword:String ?= null
     override fun onBindViewHolder(holder: MapListAdapter.ViewHolder, position: Int) {
 
-        var keyword:String = itemList[position].keyword
+         keyword = itemList[position].keyword
+        var code:String = itemList[position].typoeCode
         Log.d(TAG,"혹시111"+keyword)
-        setImage(keyword,holder.itemView,holder.image)
+        setImage(code,holder.itemView,holder.image)
 
         holder.name.text = itemList[position].name
         holder.road.text = itemList[position].road
@@ -68,34 +69,40 @@ class MapListAdapter (val itemList: ArrayList<MapListModel>): RecyclerView.Adapt
         this.itemClickListener = onItemClickListener
     }
 
-    fun setImage(keyword:String,view:View,image:ImageView){
+    fun setImage(code:String,view:View,image:ImageView){
 
+        Log.d(TAG,"혹시222"+code)
         Log.d(TAG,"혹시222"+keyword)
 
-        when (keyword) {
-            "동물병원" -> {
+        when (code) {
+            "HP8" -> {
                 Glide.with(view)
                     .load(R.drawable.pethospital)
                     .into(image)
             }
-            "애견카페" ->  {
+            "CE7" ->  {
                 Glide.with(view)
                     .load(R.drawable.petcafe)
                     .into(image)
             }
-            "애견식당" ->  {
+            "FD6" ->  {
                 Glide.with(view)
                     .load(R.drawable.petfood)
                     .into(image)
             }
-            "애견동반호텔" ->  {
+            "AD5" ->  {
                 Glide.with(view)
                     .load(R.drawable.pethotel)
                     .into(image)
             }
-            "애견용품" ->  {
+//            "애견용품" ->  {
+//                Glide.with(view)
+//                    .load(R.drawable.petmd)
+//                    .into(image)
+//            }
+            else ->  {
                 Glide.with(view)
-                    .load(R.drawable.petmd)
+                    .load(R.drawable.allimage)
                     .into(image)
             }
         }

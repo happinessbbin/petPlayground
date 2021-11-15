@@ -29,6 +29,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
@@ -142,30 +143,7 @@ class MapFragment : Fragment() {
         // binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
 
 
-
         Log.d(TAG,"위치:"+MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading)
-
-//        // 검색 버튼
-//        binding.btnSearch.setOnClickListener {
-//            keyword = binding.etSearchField.text.toString()
-//            pageNumber = 1
-//            searchKeyword(keyword, pageNumber)
-//        }
-
-//        // 이전 페이지 버튼
-//        binding.btnPrevPage.setOnClickListener {
-//            pageNumber--
-//            binding.tvPageNumber.text = pageNumber.toString()
-//            searchKeyword(keyword, pageNumber)
-//        }
-//
-//        // 다음 페이지 버튼
-//        binding.btnNextPage.setOnClickListener {
-//            pageNumber++
-//            binding.tvPageNumber.text = pageNumber.toString()
-//            searchKeyword(keyword, pageNumber)
-//        }
-
 
         onClick(binding.btnPetHospital,"동물병원")
         onClick(binding.btnPetCafe,"애견카페")
@@ -192,7 +170,7 @@ class MapFragment : Fragment() {
             .build()
         val api = retrofit.create(KakaoAPI::class.java)            // 통신 인터페이스를 객체로 생성
         val call = api.getSearchKeyword(API_KEY, keyword, page,longitude,latitude)    // 검색 조건 입력
-
+        
         // API 서버에 요청
         call.enqueue(object: Callback<ResultSearchKeyword> {
             override fun onResponse(call: Call<ResultSearchKeyword>, response: Response<ResultSearchKeyword>) {
@@ -278,19 +256,25 @@ class MapFragment : Fragment() {
                     // TODO("여기 이미지 다시.. ")
                     // 커스텀 마커 이미지
                     if(document.category_group_code.equals("HP8")){ // 병원
-                        customImageResourceId = R.drawable.hospitals
-                        customSelectedImageResourceId = R.drawable.hospitals
+                        customImageResourceId = R.drawable.pethospitals
+                        customSelectedImageResourceId = R.drawable.pethospitals
                     }else if(document.category_group_code.equals("CE7")){ // 카페
-                        customImageResourceId = R.drawable.hospitals
-                        customSelectedImageResourceId = R.drawable.hospitals
+                        customImageResourceId = R.drawable.petcafes
+                        customSelectedImageResourceId = R.drawable.petcafes
                     }else if(document.category_group_code.equals("FD6")){ //  식당
-
+                        customImageResourceId = R.drawable.petfoods
+                        customSelectedImageResourceId = R.drawable.petfoods
                     }else if(document.category_group_code.equals("AD5")){ // 호텔/숙박
-
+                        customImageResourceId = R.drawable.pethotels
+                        customSelectedImageResourceId = R.drawable.pethotels
+                    }else if(document.category_group_code.equals("") && keyword.equals("애견용품")){
+                        customImageResourceId = R.drawable.petmds
+                        customSelectedImageResourceId = R.drawable.petmds
                     }else{
                         customImageResourceId = R.drawable.btnall
                         customSelectedImageResourceId = R.drawable.btnall
                     }
+
 
                     markerType = MapPOIItem.MarkerType.CustomImage          // 마커 모양 (커스텀)
 
@@ -305,8 +289,6 @@ class MapFragment : Fragment() {
             }
             listAdapter.notifyDataSetChanged()
 
-//            binding.btnNextPage.isEnabled = !searchResult.meta.is_end // 페이지가 더 있을 경우 다음 버튼 활성화
-//            binding.btnPrevPage.isEnabled = pageNumber != 1             // 1페이지가 아닐 경우 이전 버튼 활성화
 
         } else {
             // 검색 결과 없음
