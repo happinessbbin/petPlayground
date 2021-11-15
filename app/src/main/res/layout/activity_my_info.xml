@@ -64,7 +64,6 @@
                         android:layout_marginLeft="140dp"
                         android:layout_marginTop="30dp"
                         android:fontFamily="@font/jalnan"
-                        android:text="류수민"
                         android:textColor="@color/down_black"
                         android:textSize="20dp" />
 
@@ -84,7 +83,6 @@
                         android:layout_marginLeft="180dp"
                         android:layout_marginTop="80dp"
                         android:fontFamily="@font/jalnan"
-                        android:text="01012341234"
                         android:textSize="15dp" />
 
                     <!-- 이미지 뷰 - 아이콘 생성  -->
@@ -103,7 +101,6 @@
                         android:layout_marginLeft="180dp"
                         android:layout_marginTop="105dp"
                         android:fontFamily="@font/jalnan"
-                        android:text="000000@naver.com"
                         android:textSize="15dp" />
 
                 </RelativeLayout>

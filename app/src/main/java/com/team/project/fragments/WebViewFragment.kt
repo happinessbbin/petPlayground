@@ -14,14 +14,17 @@ import com.team.project.MainActivity
 import com.team.project.R
 import kotlinx.android.synthetic.main.activity_content_show.view.*
 import android.webkit.WebSettings
-
-
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import com.team.project.databinding.WebviewBinding
 
 
 class WebViewFragment : Fragment() {
 
     private var mWebView: WebView? = null
     private var mWebSettings : WebSettings? = null
+
+    private lateinit var binding : WebviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,18 +45,18 @@ class WebViewFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.webview, container, false)
+        // binding 할당
+        binding = DataBindingUtil.inflate(inflater, R.layout.webview, container, false)
 
         val url:String = arguments?.getString("url").toString()
         Log.d(TAG,"URL:"+url)
 
         // 웹뷰 시작
         // 웹뷰 시작
-        mWebView = view.findViewById<WebView>(R.id.webView1)
 
-        mWebView?.setWebViewClient(WebViewClient()) // 클릭시 새창 안뜨게
+        binding.webView1.setWebViewClient(WebViewClient()) // 클릭시 새창 안뜨게
 
-        mWebSettings = mWebView?.getSettings() //세부 세팅 등록
+        mWebSettings = binding.webView1?.getSettings() //세부 세팅 등록
 
         mWebSettings?.setJavaScriptEnabled(true) // 웹페이지 자바스클비트 허용 여부
         mWebSettings?.setSupportMultipleWindows(false) // 새창 띄우기 허용 여부
@@ -66,11 +69,31 @@ class WebViewFragment : Fragment() {
         mWebSettings?.setCacheMode(WebSettings.LOAD_NO_CACHE) // 브라우저 캐시 허용 여부
         mWebSettings?.setDomStorageEnabled(true) // 로컬저장소 허용 여부
 
-        mWebView?.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+        binding.webView1?.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
 
+        binding.homeTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_webViewFragment_to_homeFragment)
+        }
 
+        binding.tipTap.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("url", "https://tools.mypetlife.co.kr/")
+            it.findNavController().navigate(R.id.action_webViewFragment_to_tipFragment)
+        }
 
-        return view
+        binding.talkTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_webViewFragment_to_talkFragment)
+        }
+
+        binding.map.setOnClickListener {
+            it.findNavController().navigate(R.id.action_webViewFragment_to_mapFragment)
+        }
+
+        binding.storeTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_webViewFragment_to_myInfoFragment)
+        }
+
+        return binding.root
     }
 
 

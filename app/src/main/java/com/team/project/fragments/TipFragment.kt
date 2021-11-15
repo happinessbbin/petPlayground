@@ -50,18 +50,18 @@ class TipFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_tip, container, false)
+        // binding 할당
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tip, container, false)
 
         val url:String = arguments?.getString("url").toString()
         Log.d(TAG,"URL:"+url)
 
         // 웹뷰 시작
         // 웹뷰 시작
-        mWebView = view.findViewById<WebView>(R.id.webView1)
 
-        mWebView?.setWebViewClient(WebViewClient()) // 클릭시 새창 안뜨게
+        binding.webView1.setWebViewClient(WebViewClient()) // 클릭시 새창 안뜨게
 
-        mWebSettings = mWebView?.getSettings() //세부 세팅 등록
+        mWebSettings =binding.webView1?.getSettings() //세부 세팅 등록
 
         mWebSettings?.setJavaScriptEnabled(true) // 웹페이지 자바스클비트 허용 여부
         mWebSettings?.setSupportMultipleWindows(false) // 새창 띄우기 허용 여부
@@ -74,10 +74,8 @@ class TipFragment : Fragment() {
         mWebSettings?.setCacheMode(WebSettings.LOAD_NO_CACHE) // 브라우저 캐시 허용 여부
         mWebSettings?.setDomStorageEnabled(true) // 로컬저장소 허용 여부
 
-        mWebView?.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+        binding.webView1?.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
 
-        // binding 할당
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tip, container, false)
 
         binding.homeTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_tipFragment_to_homeFragment)
@@ -87,12 +85,15 @@ class TipFragment : Fragment() {
             it.findNavController().navigate(R.id.action_tipFragment_to_talkFragment)
         }
 
+        binding.map.setOnClickListener {
+            it.findNavController().navigate(R.id.action_webViewFragment_to_mapFragment)
+        }
+
         binding.storeTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_tipFragment_to_myInfoFragment)
         }
 
-
-        return view
+        return binding.root
     }
 
 
