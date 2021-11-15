@@ -86,7 +86,7 @@ class TipFragment : Fragment() {
         }
 
         binding.map.setOnClickListener {
-            it.findNavController().navigate(R.id.action_webViewFragment_to_mapFragment)
+            it.findNavController().navigate(R.id.action_tipFragment_to_mapFragment)
         }
 
         binding.storeTap.setOnClickListener {
