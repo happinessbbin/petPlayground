@@ -20,7 +20,6 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.User
 import com.team.project.Join_PhoneNumber_Activity
-import com.team.project.Join_User_PetInfo_Activity
 import com.team.project.MainActivity
 import com.team.project.R
 import com.team.project.databinding.ActivityLoginBinding
@@ -158,7 +157,7 @@ class LoginActivity : AppCompatActivity() {
                 userService.createFireBaseAuthUser(
                     usermodel,
                     this,
-                    Join_User_PetInfo_Activity::class.java
+                    MainActivity::class.java
                 )
                 /*******************************/
 

@@ -31,6 +31,8 @@ class MyInfoFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     private lateinit var binding: ActivityMyInfoBinding
+    // 원래 이렇게 쓰면 안됨.. ㅎ
+    private lateinit var pass :String
 
     companion object {
         fun newInstance(): MyInfoFragment = MyInfoFragment()
@@ -149,6 +151,7 @@ class MyInfoFragment : Fragment() {
                 binding.inputPhoneNum.setText(userModel?.phone)
                 binding.inputEmail.setText(userModel?.userEmail)
 
+                mainActivity.pass = userModel?.userPassword.toString()
                 // 이메일값 담기 (비밀번호 변경때 쓰기 위해서)
 
                 mainActivity.email = userModel?.userEmail.toString()

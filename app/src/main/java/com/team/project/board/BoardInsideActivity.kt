@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.team.project.firebaseuser.UserModel
+import com.team.project.fragments.TalkFragment
 import kotlinx.coroutines.*
 import java.lang.Exception
 
@@ -184,7 +185,8 @@ class BoardInsideActivity : AppCompatActivity() {
 
             FBRef.boardRef.child(key).removeValue()
             Toast.makeText(this, "삭제완료", Toast.LENGTH_LONG).show()
-            finish()
+            val intent = Intent(this, TalkFragment::class.java)
+            startActivity(intent)
 
         }
 

@@ -115,6 +115,12 @@ class MyInfoDeleteFragment : Fragment() {
             return
         }
 
+        if(!mainActivity.pass.equals(prePassword)){
+            Toast.makeText(mainActivity, "비밀번호가 다릅니다.", Toast.LENGTH_LONG).show()
+
+            return
+        }
+
         /*** FireBase에서 삭제 ***/
         user.delete()
             .addOnCompleteListener { task ->
@@ -128,7 +134,7 @@ class MyInfoDeleteFragment : Fragment() {
             }
 
         //로그아웃처리
-        FirebaseAuth.getInstance().signOut()
+//        FirebaseAuth.getInstance().signOut()
 
         val intent = Intent(mainActivity, LoginActivity::class.java)
         startActivity(intent)

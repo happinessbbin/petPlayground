@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
     // 인덱스값이 아이템 수의 절반, 딱 중간쯤에서 시작하도록 해 앞뒤 어디로 이동해도 무한대처럼 보이게 함
     private var bannerPosition = Int.MAX_VALUE/4
     // 1.5 초 간격으로 배너 페이지 넘어감
-    private val intervalTime = 5000.toLong()
+    private val intervalTime = 3000.toLong()
 
     // 배너 어댑터 초기화
     private lateinit var bannerRecyclerAdapter: MyIntroPagerRecyclerAdapter

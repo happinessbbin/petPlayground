@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var uid : String
     lateinit var email : String
+    lateinit var pass : String
 
     var latitude : Double = 0.0
     var longitude : Double = 0.0
